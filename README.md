@@ -42,7 +42,7 @@ To install and run RippleGUItester, follow these steps:
    # Create .anthropic_token file with your Anthropic API key
    echo "sk-ant-api03-xxxxx..." > .anthropic_token
    ```
-   And
+   
    ```bash
    # Create .openai_token file with your OpenAI API key
    echo "sk-proj-xxxxx..." > .openai_token
