@@ -164,7 +164,7 @@ output/{Repository}/output/{PR_ID}/
 
 ## Known Differences from the Accepted Paper
 
-⚠️ **Note**: The artifact contains a **correction** to the evaluation metrics:
+⚠️ **Note**: The artifact contains a **correction** to the evaluation statistics:
 
 * **Issue.** In the accepted paper, one Firefox true positive (TP) bug was mistakenly counted as a false positive (FP).
 
