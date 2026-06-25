@@ -57,7 +57,6 @@ Download and extract the data:
 This creates a `data/` directory containing the Scenario Knowledge Base (SKB) and pull requests for testing.
 
 ```bash
-# Using wget (Linux)
 wget https://github.com/SuYanqi/RippleGUItester/releases/download/data/data.zip
 unzip data.zip
 ```
@@ -68,7 +67,6 @@ Download the evaluation results:
 This creates an `output/` directory containing labeled evaluation results and analysis summaries.
 
 ```bash
-# Using wget (Linux)
 wget https://github.com/SuYanqi/RippleGUItester/releases/download/data/output.zip
 unzip output.zip
 ```
