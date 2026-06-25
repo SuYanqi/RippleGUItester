@@ -41,7 +41,9 @@ To install and run RippleGUItester, follow these steps:
    ```bash
    # Create .anthropic_token file with your Anthropic API key
    echo "sk-ant-api03-xxxxx..." > .anthropic_token
-   
+   ```
+   And
+   ```bash
    # Create .openai_token file with your OpenAI API key
    echo "sk-proj-xxxxx..." > .openai_token
    ```
@@ -58,11 +60,14 @@ This creates a `data/` directory containing the Scenario Knowledge Base (SKB) an
 # Using curl (macOS/Linux)
 curl -L -O https://github.com/SuYanqi/RippleGUItester/releases/download/data/data.zip
 unzip data.zip
-
-# Or using wget (Linux)
+```
+Or
+```bash
+# Using wget (Linux)
 wget https://github.com/SuYanqi/RippleGUItester/releases/download/data/data.zip
 unzip data.zip
 ```
+
 
 Download the evaluation results:
 
@@ -72,8 +77,10 @@ This creates an `output/` directory containing labeled evaluation results and an
 # Using curl (macOS/Linux)
 curl -L -O https://github.com/SuYanqi/RippleGUItester/releases/download/data/output.zip
 unzip output.zip
-
-# Or using wget (Linux)
+```
+Or
+```bash
+# Using wget (Linux)
 wget https://github.com/SuYanqi/RippleGUItester/releases/download/data/output.zip
 unzip output.zip
 ```
@@ -85,7 +92,9 @@ Verify the setup by running evaluation scripts:
 ```bash
 # Reproduce RQ3 (Bug Distribution - generates Figure 8)
 python -m scripts.evaluation.calculate_recall_on_known_bugs
+```
 
+```bash
 # Reproduce RQ4 (Overhead breakdown - generates Figure 9)
 python -m scripts.evaluation.calculate_overhead_breakdown
 ```
@@ -119,8 +128,10 @@ python -m scripts.preparation.create_vector_stores --repo Zettlr
 ```bash
 # Run a specific PR number
 python -m scripts.execution.app --repo Zettlr --pr 5976
-
-# Or run all PRs for a repository
+```
+Or
+```bash
+# Run all PRs for a repository
 python -m scripts.execution.app --repo Zettlr
 ```
 
@@ -133,8 +144,10 @@ After test execution, you can post-process the detected bugs to filter out false
 ```bash
 # Post-process bugs for a specific PR
 python -m scripts.execution.post_process_bug_reports --repo Zettlr --pr 5976
-
-# Or process all PRs for a repository
+```
+Or
+```bash
+# Process all PRs for a repository
 python -m scripts.execution.post_process_bug_reports --repo Zettlr
 ```
 
@@ -163,17 +176,21 @@ output/{Repository}/output/{PR_ID}/
 
 ---
 
-## Known Differences from Accepted Paper
+## Known Differences from the Accepted Paper
 
 ⚠️ **Note**: The artifact contains a **correction** to the evaluation metrics:
 
-- **Issue**: The accepted paper incorrectly counted one Firefox True Positive (TP) bug as a False Positive (FP).
+* **Issue.** In the accepted paper, one Firefox true positive (TP) bug was mistakenly counted as a false positive (FP).
 
-- **Correction**: This has been fixed in the artifact. The corrected metrics show:
-  - Firefox: TP +1, FP -1 (compared to accepted paper)
-  - Slightly different overall metrics in Table 1, RQ1, and RQ2
+* **Correction.** This artifact includes the corrected evaluation results:
 
-- **Resolution**: The camera-ready version will be updated with the corrected metrics to match the artifact.
+  * **Table 1:** Firefox TP +1, FP −1 -> Total TP +1, Total FP −1
+  * **RQ2:** The number of analyzed false-positive bugs decreases by 1.
+
+* **Impact.** This correction affects only the reported statistics and does **not** change the experimental findings or the conclusions of the paper.
+
+* **Camera-ready.** We intend to incorporate this correction into the camera ready version.
+
 
 ---
 
