@@ -57,12 +57,6 @@ Download and extract the data:
 This creates a `data/` directory containing the Scenario Knowledge Base (SKB) and pull requests for testing.
 
 ```bash
-# Using curl (macOS/Linux)
-curl -L -O https://github.com/SuYanqi/RippleGUItester/releases/download/data/data.zip
-unzip data.zip
-```
-Or
-```bash
 # Using wget (Linux)
 wget https://github.com/SuYanqi/RippleGUItester/releases/download/data/data.zip
 unzip data.zip
@@ -73,12 +67,6 @@ Download the evaluation results:
 
 This creates an `output/` directory containing labeled evaluation results and analysis summaries.
 
-```bash
-# Using curl (macOS/Linux)
-curl -L -O https://github.com/SuYanqi/RippleGUItester/releases/download/data/output.zip
-unzip output.zip
-```
-Or
 ```bash
 # Using wget (Linux)
 wget https://github.com/SuYanqi/RippleGUItester/releases/download/data/output.zip
@@ -129,7 +117,7 @@ python -m scripts.preparation.create_vector_stores --repo Zettlr
 # Run a specific PR number
 python -m scripts.execution.app --repo Zettlr --pr 5976
 ```
-Or
+
 ```bash
 # Run all PRs for a repository
 python -m scripts.execution.app --repo Zettlr
@@ -145,7 +133,7 @@ After test execution, you can post-process the detected bugs to filter out false
 # Post-process bugs for a specific PR
 python -m scripts.execution.post_process_bug_reports --repo Zettlr --pr 5976
 ```
-Or
+
 ```bash
 # Process all PRs for a repository
 python -m scripts.execution.post_process_bug_reports --repo Zettlr
@@ -190,7 +178,6 @@ output/{Repository}/output/{PR_ID}/
 * **Impact.** This correction affects only the reported statistics and does **not** change the experimental findings or the conclusions of the paper.
 
 * **Camera-ready.** We intend to incorporate this correction into the camera ready version.
-
 
 ---
 
