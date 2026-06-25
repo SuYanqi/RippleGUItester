@@ -1,0 +1,49 @@
+# API token files (similar to Testora)
+.anthropic_token
+.openai_token
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+log/
+
+# Data and output (distributed via GitHub Releases)
+data/
+output/
+*.zip
+
+# Temporary files
+*.tmp
+*.bak
