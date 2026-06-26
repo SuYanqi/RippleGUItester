@@ -36,7 +36,10 @@ To install and run RippleGUItester, follow these steps:
 
 4. **Configure API Keys** (Optional):
 
-   API keys are **not required** for the artifact evaluation, including reproducing the reported results from the provided pre-computed outputs.
+   API keys are **not required** for the artifact evaluation, including:
+
+   - reproducing the reported results from the provided pre-computed outputs;
+   - inspecting an example of the complete pipeline output in `./output/Zettlr/PR5976_example_output` (see [Section 4: Understanding Output Structure](#4-understanding-output-structure) for an explanation of each output file).
 
    API keys are only needed if you want to run the full RippleGUItester pipeline to perform change-aware testing. To do so, create two token files in the project root:
 
