@@ -41,7 +41,7 @@ To install and run RippleGUItester, follow these steps:
    - reproducing the reported results from the provided pre-computed outputs (see [Results Reported in the Paper](#results-reported-in-the-paper);
    - inspecting an example of the complete pipeline output in `./output/Zettlr/PR5976_example_output` (see [Understanding Output Structure](#4-understanding-output-structure) for an explanation of each output file).
 
-   API keys are **only needed** if you want to run the full RippleGUItester pipeline to perform change-aware testing. To do so, create two token files in the project root:
+   API keys are **only needed** if you want to run the full RippleGUItester pipeline to perform change-aware testing (see [Running RippleGUItester](#running-rippleguitester)). To do so, create two token files in the project root:
 
    ```bash
    # Create .anthropic_token file with your Anthropic API key
