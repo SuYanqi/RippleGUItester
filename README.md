@@ -38,9 +38,7 @@ To install and run RippleGUItester, follow these steps:
 
    API keys are **not required** for the standard artifact evaluation. You can use the provided pre-computed outputs to reproduce the reported results.
 
-   API keys are only needed if you want to run the full RippleGUItester pipeline. To do so, create two token files in the project root:
-
-   Create two token files in the project root with your API keys:
+   API keys are only needed if you want to run the full RippleGUItester pipeline to perform the testing from scratch. To do so, create two token files in the project root:
 
    ```bash
    # Create .anthropic_token file with your Anthropic API key
