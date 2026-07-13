@@ -15,6 +15,17 @@ RippleGUItester uses a Visual Studio Code Dev Container to set up and run the pr
 
 To install and run RippleGUItester, follow these steps:
 
+0. Install Docker Desktop
+
+   Download and install Docker Desktop from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+
+   After installation:
+   - Start Docker Desktop and wait for it to be ready (green icon in menu bar/system tray)
+   - Recommended Docker Resources (Settings → Resources):
+     - CPUs: 4+ cores
+     - Memory: 8GB+
+     - Swap: 5GB+
+
 1. Install Visual Studio Code and the **Dev Containers** extension.
 
 2. Open RippleGUItester in Visual Studio Code:

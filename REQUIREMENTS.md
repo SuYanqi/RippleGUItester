@@ -10,7 +10,10 @@
 ## Software
 
 - **Operating System**: Linux (Ubuntu 20.04+), macOS 11+, or Windows 10/11 with WSL 2
-- **Docker**: Version 20.10+ with Docker-in-Docker support
+- **Docker Desktop**: Version 20.10+
+    - Download: https://www.docker.com/products/docker-desktop/
+    - Ensure Docker Desktop is running before starting Dev Container
+    - Recommended resources: 4+ CPU cores, 8GB+ RAM, 5GB+ Swap
 - **Visual Studio Code**: Version 1.70+ with Dev Containers extension
 
 ## External Services
