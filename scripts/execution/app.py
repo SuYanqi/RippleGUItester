@@ -39,6 +39,12 @@ if __name__ == "__main__":
         type=int,
         help="Specific PR/bug number to test (optional, default: run all)"
     )
+    parser.add_argument(
+        "--max-scenarios",
+        type=int,
+        default=None,
+        help="Maximum number of test scenarios to execute per PR (e.g., --max-scenarios 1 to run only the first scenario). Default: run all scenarios."
+    )
     args = parser.parse_args()
 
     # Map CLI argument (e.g., "Firefox") to internal config constant (e.g., "firefox")
@@ -192,7 +198,8 @@ if __name__ == "__main__":
                      use_extracted_executor_memory=use_extracted_executor_memory,
                      include_executor_history_image=include_executor_history_image,
                      with_detector_response=with_detector_response,
-                     detector_reasoning_level=detector_reasoning_level)
+                     detector_reasoning_level=detector_reasoning_level,
+                     max_scenarios=args.max_scenarios)
 
 
 

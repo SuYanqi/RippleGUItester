@@ -22,7 +22,8 @@ class App:
                  use_instruction_reuse_tool=False,
                  use_extracted_executor_memory=True,
                  include_executor_history_image=False, with_detector_response=True,
-                 detector_reasoning_level='medium'):
+                 detector_reasoning_level='medium',
+                 max_scenarios=None):
 
         # generator ################################################################################################
         print(f"\n{'='*70}")
@@ -46,6 +47,8 @@ class App:
         build_info = generator_messages[2]["content"][Placeholder.INFO][Placeholder.BUILD_INFO]
 
         test_scenarios = generator_output[Placeholder.SCENARIOS]
+        if max_scenarios is not None:
+            test_scenarios = test_scenarios[:max_scenarios]
         logging.info(f"Generated {len(test_scenarios)} test scenarios")
 
         code_change_intent = ""
