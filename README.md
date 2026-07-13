@@ -137,7 +137,16 @@ python -m scripts.execution.app --repo Zettlr --pr 5976
 python -m scripts.execution.app --repo Zettlr
 ```
 
-⚠️ **Quick Validation Tip:** This process is expensive and time-consuming. Averages are **$5.996 and 54.8 minutes per PR**. Each PR generates and executes multiple test scenarios stored in numbered folders (0, 1, 2, ...). For a quick validation, you can proceed to Step 3 once the first test scenario (folder `0`) completes, without waiting for all scenarios to finish.
+**Limiting scenarios (recommended for quick validation):**
+
+```bash
+# Run only the first test scenario per PR to save time and cost
+python -m scripts.execution.app --repo Zettlr --pr 5976 --max-scenarios 1
+```
+
+The `--max-scenarios` flag limits how many test scenarios are executed per PR. For example, `--max-scenarios 1` runs only the first scenario (folder `0`) and then stops cleanly — no manual interruption needed. 
+
+⚠️ **Quick Validation Tip:** This process is expensive and time-consuming. Averages are **$5.996 and 54.8 minutes per PR**. Each PR generates and executes multiple test scenarios stored in numbered folders (0, 1, 2, ...). For a quick validation, use `--max-scenarios 1` to run only the first scenario and stop cleanly.
 
 ### 3. Post-Process Bug Reports (Optional)
 
