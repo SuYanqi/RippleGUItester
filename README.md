@@ -66,14 +66,6 @@ To install and run RippleGUItester, follow these steps:
 
 ---
 
-## Data Download
-
-The `data/` and `output/` directories are **automatically downloaded** when the Dev Container is created (via `postCreateCommand.sh`). No manual steps are needed.
-
-- `data/` — Scenario Knowledge Base (SKB) and pull requests for testing.
-- `output/` — Labeled evaluation results and analysis summaries.
-
-
 ## Quick Validation
 
 Verify the setup by running evaluation scripts:
