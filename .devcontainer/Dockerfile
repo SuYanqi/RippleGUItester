@@ -20,4 +20,6 @@ RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg \
 RUN apt-get update && apt-get install -y \
     xvfb \
     x11-utils \
+    wget \
+    unzip \
     && rm -rf /var/lib/apt/lists/*

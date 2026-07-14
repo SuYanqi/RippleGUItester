@@ -17,6 +17,26 @@ echo "📦 Installing RippleGUItester in editable mode..."
 python -m pip install --user -e .
 
 echo ""
+echo "📥 Downloading datasets..."
+if [ ! -d "data" ]; then
+    wget -q https://github.com/SuYanqi/RippleGUItester/releases/download/data/data.zip
+    unzip -q data.zip
+    rm -f data.zip
+    echo "   ✅ data/ downloaded and extracted"
+else
+    echo "   ⏭️  data/ already exists, skipping"
+fi
+
+if [ ! -d "output" ]; then
+    wget -q https://github.com/SuYanqi/RippleGUItester/releases/download/data/output.zip
+    unzip -q output.zip
+    rm -f output.zip
+    echo "   ✅ output/ downloaded and extracted"
+else
+    echo "   ⏭️  output/ already exists, skipping"
+fi
+
+echo ""
 echo "✅ Setup complete!"
 
 # Start virtual display for GUI testing
