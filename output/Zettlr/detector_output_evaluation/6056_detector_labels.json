@@ -1,0 +1,226 @@
+{
+  "bug_id": 6056,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Tab-strip control near “Split View” tab (close/indicator area) renders differently after change (possible misrender/hover/clip)",
+            "steps_to_reproduce": [
+              "Launch the app to the main interface (as in the scenario, after skipping the setup wizard).",
+              "Observe the tab strip at the top of the editor, specifically the right side of the “Split View” tab (close/controls region)."
+            ],
+            "expected_behaviors": [
+              "Tab close/control area should render consistently and correctly (icon/shape/position not changing unexpectedly between builds)."
+            ],
+            "actual_behaviors": [
+              "A small visual change is present in the “Split View” tab’s close/controls region (bbox ~[749,171]-[772,188]), indicating the control/icon/state is rendered differently after the code change. This appears unrelated to the intended table editor UX improvements."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        },
+        {
+          "bug_report": {
+            "summary": "Visual artifact/misalignment near the “Helpful Links” heading marker (#) in the right editor pane",
+            "steps_to_reproduce": [
+              "Open the tutorial content so the “Helpful Links” heading is visible in the lower-right pane.",
+              "Observe the left side of the heading where the green “#” heading marker is shown."
+            ],
+            "expected_behaviors": [
+              "Heading marker and its left margin/decorations should render cleanly without stray bars/overlaps, and be consistent between builds."
+            ],
+            "actual_behaviors": [
+              "A small rendering difference is present near the “Helpful Links” heading marker/margin (diff bbox ~[895,538]-[905,584]), suggesting an added/shifted vertical bar or slight misalignment around the heading indicator between before/after builds."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Backspace at beginning of table cell moves caret unexpectedly (caret position jumps)",
+            "steps_to_reproduce": [
+              "Create a new Markdown file.",
+              "Insert a pipe table with 2 columns and 3 total rows (header + 2 body rows).",
+              "Click in the first body cell (row 1, col 1) and type “alpha”.",
+              "Place the caret immediately before the “a” in “alpha”.",
+              "Press Backspace once."
+            ],
+            "expected_behaviors": [
+              "Backspace at the start of a table cell should not move the caret to a different position (and should not cross/delete table boundaries).",
+              "Caret position indicators (line/column) should remain consistent with being at the start of the cell content."
+            ],
+            "actual_behaviors": [
+              "After the code change, the caret position indicators change (e.g., from ~4:3 to ~4:9 as shown in the top-right/status bar), indicating the caret jumped to a different location even though the cell text remains “alpha”."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Multiline paste sanitization drops an entire line of text instead of replacing newline with a space",
+            "steps_to_reproduce": [
+              "Create a new Markdown document.",
+              "Insert a 2-column, 4-row table (1 header + 3 body).",
+              "Click into the first body cell (row 1, col 1).",
+              "Paste multiline text:\nFirst line of pasted text.\nSecond line should become a space.\nThird line ends here.",
+              "Observe the resulting cell content."
+            ],
+            "expected_behaviors": [
+              "All pasted text remains present, with line breaks sanitized (e.g., converted into spaces) so content becomes a single-line string in the cell: “First line of pasted text. Second line should become a space. Third line ends here.”"
+            ],
+            "actual_behaviors": [
+              "The middle line text (“Second line should become a space.”) is missing after paste; only the first and third lines remain visible in the cell (diff region 3 ~[898,515]-[1164,733])."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": false,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        },
+        {
+          "bug_report": {
+            "summary": "Typing below a table may still insert text into a table cell instead of normal document text (cursor fails to leave table)",
+            "steps_to_reproduce": [
+              "Create a new Markdown document.",
+              "Insert a table with 2 columns and 4 total rows (1 header + 3 body).",
+              "Click into a table cell.",
+              "Click below the table (normal document text area) and type: \"below\".",
+              "Click back into the original cell to inspect surrounding content/state."
+            ],
+            "expected_behaviors": [
+              "After clicking below the table, the caret moves outside the table and typed text (“below”) appears in normal document text, not inside any table cell."
+            ],
+            "actual_behaviors": [
+              "In the after-change screenshot, the word “below” is visible inside the table grid (diff region 4 ~[923,700]-[978,721]), indicating text entry may remain within the table instead of below it."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "GUI element location or interaction error (non-deterministic behavior)"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Malformed pipe table incorrectly renders as a formatted table in preview after editing (data/structure loss)",
+            "steps_to_reproduce": [
+              "Create a new Markdown document.",
+              "Paste the malformed pipe table:\n| A | B |\n|---|---|\n| 1 | 2 | 3 |\n| 4 |",
+              "Append \" X\" to the end of the last line so it becomes \"| 4 | X\".",
+              "Observe the preview pane rendering of this table block."
+            ],
+            "expected_behaviors": [
+              "Because the table remains malformed (a data row has 3 cells while the header has 2), it should stay as raw markdown text in the preview (not be converted into a rendered table)."
+            ],
+            "actual_behaviors": [
+              "The preview renders the malformed pipe table as a formatted table (with table UI controls/handles) and appears to drop/truncate the extra cell from the \"| 1 | 2 | 3 |\" row."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "GUI element location or interaction error (non-deterministic behavior)"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "Grid-table markdown gets inserted into existing pipe-table cell instead of becoming a new raw block below (table boundary corruption)",
+            "steps_to_reproduce": [
+              "Create a new Markdown document.",
+              "Paste the malformed pipe table text.",
+              "Edit the last line to add \" X\" (so the last line becomes \"| 4 | X\").",
+              "Attempt to add a new line below the table and paste a grid table markdown block starting with \"+-----+-----+\".",
+              "Observe where the pasted grid-table text ends up."
+            ],
+            "expected_behaviors": [
+              "Grid-table markdown should appear as its own raw text block below the pipe table (since grid tables are unsupported for rendering in this scenario), and should not be inserted into/modify an existing pipe table cell."
+            ],
+            "actual_behaviors": [
+              "The grid-table markdown appears inside the existing table cell after \"X\" (e.g., the cell shows \"X +-----+-----+\"), indicating the editor did not leave the table context and the paste corrupted the table boundary."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "GUI element location or interaction error (non-deterministic behavior)"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "After clicking “+ column”, the horizontal bar/overlay beneath the table renders inconsistently (filled gray vs empty/outlined)",
+            "steps_to_reproduce": [
+              "Create a new Markdown document.",
+              "Insert a 2-column pipe table with a header row and 2 body rows.",
+              "Click into the first body cell and enter some text (e.g., “kiwi”).",
+              "Click the “+ column” control above the table headers to add a column."
+            ],
+            "expected_behaviors": [
+              "Adding a column should only change the table structure and controls; no unexpected overlay/blank bar should appear below the table, and any table-editor UI elements should render consistently."
+            ],
+            "actual_behaviors": [
+              "A wide horizontal bar/overlay area below the table changes appearance after the code change (diff at bbox ~[894,667]-[1223,690]): before shows a filled gray bar, after shows an empty/outlined bar, suggesting a rendering/style or focus-state issue triggered by adding a column."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

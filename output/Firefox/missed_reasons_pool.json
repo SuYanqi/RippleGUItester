@@ -1,0 +1,12 @@
+[
+  "Execution element location error -> incomplete test scenario execution",
+  "UI interaction Error Implemantation (drag need two coordinates but in implementation only) -> incomplete test scenario execution",
+  "build error -> incomplete test scenario execution",
+  "complex trigger condition -> test scenario generation not covered",
+  "detected by us",
+  "false execution path -> stuck -> reach maximum execution times -> incomplete test scenario execution",
+  "generated test file has random name -> replay failure -> detector missing the comparison change",
+  "reach maximum execution times -> incomplete test scenario execution",
+  "trigger path execution error",
+  "unexpected trigger condition -> test scenario generation not covered"
+]

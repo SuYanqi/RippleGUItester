@@ -1,0 +1,104 @@
+{
+  "bug_id": 1981748,
+  "ground_truth_bug_ids": [
+    1983147
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Print preview sidebar no longer shows Orientation (Portrait/Landscape) controls",
+            "steps_to_reproduce": [
+              "Open a page in Firefox.",
+              "Open Print UI (e.g., Hamburger menu → Print… or page context menu → Print…)."
+            ],
+            "expected_behaviors": [
+              "Print settings sidebar includes an Orientation section with Portrait/Landscape controls."
+            ],
+            "actual_behaviors": [
+              "Orientation section is missing from the print settings sidebar; only Destination, Pages, Color mode, More settings, etc. are shown, with no Portrait/Landscape buttons."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        },
+        {
+          "bug_report": {
+            "summary": "Print preview shows 600 total sheets/pages for the 300-page test document",
+            "steps_to_reproduce": [
+              "Generate the provided 300-page print test HTML.",
+              "Open the file in Firefox.",
+              "Open Print Preview (Print…)."
+            ],
+            "expected_behaviors": [
+              "Print Preview indicates a total page count of about 300 (or at least not doubled)."
+            ],
+            "actual_behaviors": [
+              "Print Preview shows “600 sheets of paper” and the page indicator shows “1 of 600”."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Underlying page content is visible beside the Print Preview (preview does not fully replace/cover the document area)",
+            "steps_to_reproduce": [
+              "Open the 300-page HTML print test page.",
+              "Ensure the modal <dialog> is open.",
+              "Press Ctrl+P to open Print Preview."
+            ],
+            "expected_behaviors": [
+              "Only the print preview pages should be visible in the preview area; the underlying webpage content should not be visible outside the white page preview canvas."
+            ],
+            "actual_behaviors": [
+              "Large ‘Page’ headings and ‘Unique text marker’ lines from the underlying document are visible on the left side of the window outside the white print preview page, indicating the original content is still being shown next to/behind the preview UI."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable test data causing GUI inconsistency during replay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

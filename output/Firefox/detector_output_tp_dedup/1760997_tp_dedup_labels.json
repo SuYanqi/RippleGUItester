@@ -1,0 +1,79 @@
+{
+  "bug_id": 1760997,
+  "ground_truth_bug_ids": [
+    1762148
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Application Menu: Zoom controls rendering changed (Zoom Out icon appears missing/blank or shifted)",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Open the Application Menu (≡).",
+              "Look at the Zoom controls row near the bottom of the menu."
+            ],
+            "expected_behaviors": [
+              "Zoom controls in the Application Menu render normally, with clearly visible Zoom Out (−), current zoom (e.g., 100%), and Zoom In (+) controls aligned and with their icons visible."
+            ],
+            "actual_behaviors": [
+              "After the change, the Zoom controls row’s rendering differs; the Zoom Out (−) control/icon appears to be missing/blank or shifted compared to before (layout/icon rendering changed in the app menu)."
+            ]
+          },
+          "is_duplicate": false
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Application Menu lower section row styling/arrow alignment changes near Settings/More tools",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Open the Application Menu (≡).",
+              "Look at the lower menu items around “Settings” and “More tools” (including the submenu arrow indicator)."
+            ],
+            "expected_behaviors": [
+              "Menu rows in the lower section (Settings/More tools) should keep consistent padding and arrow alignment with the previous build."
+            ],
+            "actual_behaviors": [
+              "Visual differences are present in the Settings/More tools area (diff regions 5, 6, 14), suggesting changed padding and/or submenu arrow positioning not covered by the stated intent."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

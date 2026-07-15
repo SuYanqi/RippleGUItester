@@ -1,0 +1,108 @@
+{
+  "bug_id": 14715,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Left sidebar section order/layout changes unexpectedly (Web search/Groups swapped; filter/search/add-group controls repositioned)",
+            "steps_to_reproduce": [
+              "Open the application (fresh start).",
+              "Create a new empty library using defaults.",
+              "Observe the left sidebar content/sections (Groups, Web search, filter/search fields, action icons)."
+            ],
+            "expected_behaviors": [
+              "Left sidebar sections and controls appear in the same order and layout as before the change (e.g., Groups section with its filter and add-group controls; Web search section positioned consistently).",
+              "No unrelated sidebar layout/state changes occur from a PDF viewer dependency bump."
+            ],
+            "actual_behaviors": [
+              "Left sidebar layout differs: 'Web search' appears at the top while 'Groups' appears below (differences around bboxes 0, 3, 4, 6, 7).",
+              "Filter/search fields and related controls appear moved/changed (bboxes 1, 11, 21).",
+              "Bottom-left controls (e.g., add-group area and small action buttons) appear repositioned/changed (bboxes 2, 5, 8, 9, 16, 18, 20).",
+              "Several small sidebar action icons differ/shift (bboxes 10, 12, 13, 14, 15, 17, 19)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "Vertical boundary/splitter rendering differs between sidebar and main content/entry editor (possible misalignment/thickness change)",
+            "steps_to_reproduce": [
+              "Open the application.",
+              "Create a new empty library.",
+              "Create/select an entry (so the entry editor is visible).",
+              "Look at the vertical boundary between the left sidebar and the main content/entry-editor area."
+            ],
+            "expected_behaviors": [
+              "The sidebar-to-main-content separator/splitter appears the same as before (consistent thickness/position/visuals)."
+            ],
+            "actual_behaviors": [
+              "Visual differences appear along the boundary/splitter area near the entry editor region (diff regions 23–26), suggesting changed separator rendering (e.g., thickness/position/markers) compared to before."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Entry editor left-side vertical strip shows an extra pencil/edit icon after change (not present before)",
+            "steps_to_reproduce": [
+              "Open the application.",
+              "Create a new, empty library/project using application defaults.",
+              "Add a new bibliographic entry and set its type to “InProceedings”.",
+              "Look at the left edge of the entry editor area (vertical entry-type strip)."
+            ],
+            "expected_behaviors": [
+              "The entry editor’s left-side vertical strip (with the rotated entry type label) should match the previous UI, without additional/unexpected icons."
+            ],
+            "actual_behaviors": [
+              "An additional pencil/edit icon appears at the bottom of the entry editor’s left-side vertical strip in the after-change UI, differing from the before-change UI."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "LLM hallucination — misinterpreted or imagined GUI rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

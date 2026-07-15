@@ -1,0 +1,192 @@
+{
+  "bug_id": 1857812,
+  "ground_truth_bug_ids": [
+    1868957
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "about:logins edit mode: Website address is displayed as a hyperlink instead of an editable field (breaks ability to clear URL/origin warning)",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Navigate to about:logins.",
+              "Select an existing saved login.",
+              "Click “Edit” to enter edit mode (page shows “Save Changes”/“Cancel”).",
+              "Try to focus and edit/clear the Website address field (mouse click or keyboard navigation)."
+            ],
+            "expected_behaviors": [
+              "In edit mode, Website address is an editable input control that can be focused and edited/cleared (so the origin hint/warning can appear when empty/invalid)."
+            ],
+            "actual_behaviors": [
+              "Website address is shown as a blue underlined link (e.g., https://www.gnu.org) rather than an editable field while edit-mode actions are present, preventing normal editing/clearing behavior."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "UI layout shift leading to incorrect replay click"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "about:logins Create New Login: Focusing Website address field clears the entered URL and shows placeholder + dropdown suggestions",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Go to about:logins.",
+              "Click “Create New Login”.",
+              "Type a URL into the “Website address” field (e.g., https://www.gnu.org/).",
+              "Click elsewhere, then click back into the “Website address” field to focus it."
+            ],
+            "expected_behaviors": [
+              "Clicking/focusing the Website address field should preserve the entered URL (it should not be cleared just by focusing).",
+              "Optional tooltip/hint may appear, but the field value should remain unchanged."
+            ],
+            "actual_behaviors": [
+              "On focus, the Website address field content is cleared and replaced by the placeholder (“https://www.example.com”), and a dropdown suggestion with the previously entered URL appears."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "UI layout shift leading to incorrect replay click"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "about:logins Create New Login: Typing a URL into Website address field results in corrupted/duplicated value",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Navigate to about:logins.",
+              "Click “Create New Login”.",
+              "Click into the “Website address” field.",
+              "Type/paste a URL such as “https://www.gnu.org/”."
+            ],
+            "expected_behaviors": [
+              "The Website address field displays exactly the entered URL (e.g., “https://www.gnu.org/”)."
+            ],
+            "actual_behaviors": [
+              "The Website address field displays a corrupted/duplicated URL (e.g., missing leading characters and showing two concatenated instances such as “tps://www.gnu.orhttps://www.gnu.org/”)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "UI layout shift leading to incorrect replay click"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "about:logins: Ctrl+A + Backspace does not clear Website address field to empty (prevents triggering origin warning)",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Go to about:logins.",
+              "Click “Create New Login”.",
+              "Enter a Website address (e.g., https://www.gnu.org/).",
+              "Focus the Website address field, press Ctrl+A, then press Backspace."
+            ],
+            "expected_behaviors": [
+              "Website address field becomes empty.",
+              "Origin hint/warning popup is shown while the (now empty/invalid) Website address field is focused (per scenario expectations)."
+            ],
+            "actual_behaviors": [
+              "Website address field is not cleared to empty (it still contains a URL), so the origin warning state cannot be reached via Ctrl+A + Backspace."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "GUI element location or interaction error (non-deterministic behavior)"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Create New Login: Unexpected password warning popup appears when focusing Password field (copy doesn’t match intended “edit saved login” warning)",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Go to about:logins.",
+              "Click “Create New Login”.",
+              "Fill Website address and Username (optional).",
+              "Click/focus the Password field."
+            ],
+            "expected_behaviors": [
+              "No edit-password warning popup should appear in Create New Login flow (or, if a helper message is intended, it should match the specified intent/copy for editing saved logins and be context-appropriate)."
+            ],
+            "actual_behaviors": [
+              "A popup appears next to the Password field saying “Make sure you’re saving your current password for this site.” This popup did not appear before and does not match the described new warning about editing an existing saved login’s password not updating the website password."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "UI layout shift leading to incorrect replay click"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "about:logins Create New Login: Password field label/layout is broken (blank label area + label rendered inside a bordered group)",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Navigate to about:logins.",
+              "Click “Create New Login”.",
+              "Observe the Password field section."
+            ],
+            "expected_behaviors": [
+              "Password label should render in the normal position (consistent with other fields, e.g., above the input).",
+              "No extra blank/empty label placeholder area should appear above/near the Password field.",
+              "Password input styling should match other standard inputs on the form (no unexpected fieldset/group border behavior)."
+            ],
+            "actual_behaviors": [
+              "An empty/blank label area appears where the Password label would normally be.",
+              "The “Password” label appears to be rendered inside a bordered group/fieldset around the password input, altering spacing and alignment compared to before-change."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": 1868957,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "bug_id": 5952,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Line/column (caret position) indicator changes unexpectedly after debounced update (shows 1:1 instead of end-of-line position)",
+            "steps_to_reproduce": [
+              "Create a new Markdown document (File → New File → Markdown).",
+              "Type a long single-line paragraph (as in the test scenario).",
+              "Stop typing and wait ~1.5 seconds for debounced counting to complete."
+            ],
+            "expected_behaviors": [
+              "Caret position indicator (line:column) remains accurate and stable after the debounce finishes (e.g., if typing ended at the end of the line, it should show something like 1:144)."
+            ],
+            "actual_behaviors": [
+              "After the wait/debounced update, the line:column indicator differs from the pre-change behavior and shows 1:1 (appears to reset or display an incorrect caret position)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Debounced word-count update is applied to the wrong document after fast tab switching (empty doc shows non-zero words)",
+            "steps_to_reproduce": [
+              "Create a new Markdown document (Document 1).",
+              "Type: \"The quick brown fox jumps over dogs\".",
+              "Immediately create a second new Markdown document (Document 2) and leave it empty.",
+              "Quickly switch Document 1 -> Document 2 (Ctrl+Shift+Tab then Ctrl+Tab within ~1s).",
+              "With Document 2 active, wait ~1.5s without typing/cursor movement."
+            ],
+            "expected_behaviors": [
+              "Document 2 word count/statistics remain at 0 (since it is empty).",
+              "Debounced word-count computation result from Document 1 should only update Document 1’s stats/UI."
+            ],
+            "actual_behaviors": [
+              "While Document 2 is active, the word-count UI changes from \"0 words\" (before) to \"61 words\" (after), indicating Document 1’s computed stats overwrote Document 2’s display."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "File tree selection highlight becomes out of sync with the active editor tab after switching (sidebar highlights a different document)",
+            "steps_to_reproduce": [
+              "Open two documents/tabs.",
+              "Switch between tabs quickly (e.g., Ctrl+Shift+Tab then Ctrl+Tab).",
+              "Observe the sidebar/document tree selection vs the active editor tab."
+            ],
+            "expected_behaviors": [
+              "The sidebar/file tree selection should match the currently active editor tab/document."
+            ],
+            "actual_behaviors": [
+              "After the change, the sidebar highlights a different item (e.g., \"Helpful Links\") while the active tab/editor content is \"Welcome to Zettlr!\", indicating selection state is inconsistent."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "Typing into Document 1 can insert text into a different document (focus/tab routing issue in split view)",
+            "steps_to_reproduce": [
+              "Enable split view (multiple editor panes).",
+              "Create and save a new Markdown document (Document 1).",
+              "Attempt to activate Document 1 (click its tab / click inside its editor area).",
+              "Type: \"The quick brown fox jumps over dogs\"."
+            ],
+            "expected_behaviors": [
+              "The typed text is inserted into Document 1 (the newly created empty document).",
+              "The word-count/status UI reflects Document 1’s content (7 words)."
+            ],
+            "actual_behaviors": [
+              "The typed text is inserted into a different document pane/tab (e.g., it appears under the “Helpful Links” document heading), indicating keystrokes were routed to the wrong document.",
+              "The word-count/status reflects the other document’s content (e.g., 68 words), not the 7-word new document."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

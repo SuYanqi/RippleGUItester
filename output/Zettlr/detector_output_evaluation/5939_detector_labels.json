@@ -1,0 +1,138 @@
+{
+  "bug_id": 5939,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Nested-placeholder snippet insertion leaves a literal “$2” token in the document text",
+            "steps_to_reproduce": [
+              "Create a snippet with trigger `nest` and content: `Here is a ${1:nested ${2:placeholder}}.`",
+              "In a blank line in the editor, type `:` to open the snippet menu.",
+              "Filter/select `nest` and press Enter to insert."
+            ],
+            "expected_behaviors": [
+              "Inserted text should be `Here is a nested placeholder.` (no raw placeholder tokens like `$1`/`$2` visible in the document)."
+            ],
+            "actual_behaviors": [
+              "Inserted text shows a literal `$2` in the editor (visible after `placeholder.`), indicating the placeholder token was not fully parsed/removed."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Creating a new Markdown file does not open it as the active tab in the main editor (new file ends up in lower-right pane / main editor remains on another document)",
+            "steps_to_reproduce": [
+              "Open the application.",
+              "File → New file… → Markdown.",
+              "Click Save to create the new file.",
+              "Observe the main editor tab bar and content area (then open any top menu like Edit to confirm state persists)."
+            ],
+            "expected_behaviors": [
+              "The newly created file opens and becomes the active tab in the main editor; main editor content/word count reflects the new blank document.",
+              "Tab placement is consistent (new file tab appears in the primary editor tab bar, not a different pane)."
+            ],
+            "actual_behaviors": [
+              "After change, the main editor remains on the existing “Welcome to Zettlr!” document (non-empty content/word count), while the new file tab appears in the lower-right pane instead of the main editor tab bar (visible while Edit menu is open)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "Opening Preferences unexpectedly changes the active document/content in the background editor (Helpful Links disappears; status bar resets to 0 words/0 characters)",
+            "steps_to_reproduce": [
+              "Open the application to a state where a document (e.g., “Helpful Links”) is visible in an editor pane/split view.",
+              "Click the Settings/Preferences gear icon to open Preferences.",
+              "Observe the document content and word/character counts in the background panes behind the Preferences window."
+            ],
+            "expected_behaviors": [
+              "Opening Preferences should not change which document/tab is active in any editor pane behind it.",
+              "Background content (e.g., “Helpful Links”) and status bar counts should remain unchanged while Preferences is open."
+            ],
+            "actual_behaviors": [
+              "After change, opening Preferences causes the background lower-right pane to switch to an empty document (status bar shows 0 words / 0 characters) and the previously visible “Helpful Links” content is no longer shown (diff regions no. 4–9, 3, 5–7)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "Typing ':' opens snippet menu in a different editor document/pane (keystroke goes to wrong document)",
+            "steps_to_reproduce": [
+              "Open the app and navigate to a state with the lower-right pane showing an existing document (e.g., “Helpful Links”).",
+              "Click in the lower-right editor pane around the same location.",
+              "Type ':' to open the snippet selection menu."
+            ],
+            "expected_behaviors": [
+              "The ':' keystroke should apply to the currently visible/active document in that pane (e.g., “Helpful Links”), and that document should become modified (asterisk on its tab).",
+              "The snippet menu should open anchored to the caret within that same document."
+            ],
+            "actual_behaviors": [
+              "Before change: the snippet menu opens over the “Helpful Links” content and the tab indicates it is modified (e.g., “* Helpful Links”).",
+              "After change: the snippet menu opens but the underlying pane appears to be an empty document (status shows 0 words) and a different tab is marked modified instead (the ‘Helpful Links’ content is not present)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

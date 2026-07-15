@@ -1,0 +1,113 @@
+{
+  "bug_id": 6056,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Tab-strip control near “Split View” tab (close/indicator area) renders differently after change (possible misrender/hover/clip)",
+            "steps_to_reproduce": [
+              "Launch the app to the main interface (as in the scenario, after skipping the setup wizard).",
+              "Observe the tab strip at the top of the editor, specifically the right side of the “Split View” tab (close/controls region)."
+            ],
+            "expected_behaviors": [
+              "Tab close/control area should render consistently and correctly (icon/shape/position not changing unexpectedly between builds)."
+            ],
+            "actual_behaviors": [
+              "A small visual change is present in the “Split View” tab’s close/controls region (bbox ~[749,171]-[772,188]), indicating the control/icon/state is rendered differently after the code change. This appears unrelated to the intended table editor UX improvements."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Backspace at beginning of table cell moves caret unexpectedly (caret position jumps)",
+            "steps_to_reproduce": [
+              "Create a new Markdown file.",
+              "Insert a pipe table with 2 columns and 3 total rows (header + 2 body rows).",
+              "Click in the first body cell (row 1, col 1) and type “alpha”.",
+              "Place the caret immediately before the “a” in “alpha”.",
+              "Press Backspace once."
+            ],
+            "expected_behaviors": [
+              "Backspace at the start of a table cell should not move the caret to a different position (and should not cross/delete table boundaries).",
+              "Caret position indicators (line/column) should remain consistent with being at the start of the cell content."
+            ],
+            "actual_behaviors": [
+              "After the code change, the caret position indicators change (e.g., from ~4:3 to ~4:9 as shown in the top-right/status bar), indicating the caret jumped to a different location even though the cell text remains “alpha”."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Multiline paste sanitization drops an entire line of text instead of replacing newline with a space",
+            "steps_to_reproduce": [
+              "Create a new Markdown document.",
+              "Insert a 2-column, 4-row table (1 header + 3 body).",
+              "Click into the first body cell (row 1, col 1).",
+              "Paste multiline text:\nFirst line of pasted text.\nSecond line should become a space.\nThird line ends here.",
+              "Observe the resulting cell content."
+            ],
+            "expected_behaviors": [
+              "All pasted text remains present, with line breaks sanitized (e.g., converted into spaces) so content becomes a single-line string in the cell: “First line of pasted text. Second line should become a space. Third line ends here.”"
+            ],
+            "actual_behaviors": [
+              "The middle line text (“Second line should become a space.”) is missing after paste; only the first and third lines remain visible in the cell (diff region 3 ~[898,515]-[1164,733])."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "After clicking “+ column”, the horizontal bar/overlay beneath the table renders inconsistently (filled gray vs empty/outlined)",
+            "steps_to_reproduce": [
+              "Create a new Markdown document.",
+              "Insert a 2-column pipe table with a header row and 2 body rows.",
+              "Click into the first body cell and enter some text (e.g., “kiwi”).",
+              "Click the “+ column” control above the table headers to add a column."
+            ],
+            "expected_behaviors": [
+              "Adding a column should only change the table structure and controls; no unexpected overlay/blank bar should appear below the table, and any table-editor UI elements should render consistently."
+            ],
+            "actual_behaviors": [
+              "A wide horizontal bar/overlay area below the table changes appearance after the code change (diff at bbox ~[894,667]-[1223,690]): before shows a filled gray bar, after shows an empty/outlined bar, suggesting a rendering/style or focus-state issue triggered by adding a column."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

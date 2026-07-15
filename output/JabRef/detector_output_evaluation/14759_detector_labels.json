@@ -1,0 +1,162 @@
+{
+  "bug_id": 14759,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Keyboard shortcuts table: “Shortcut” column header appearance/padding changed unexpectedly",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Press Ctrl+, to open Preferences.",
+              "Open/observe the “Keyboard shortcuts” preferences page.",
+              "Look at the table header row, specifically the “Shortcut” column header."
+            ],
+            "expected_behaviors": [
+              "Table header styling (padding/alignment/label rendering) should remain consistent unless intentionally changed as part of the icon-column improvements."
+            ],
+            "actual_behaviors": [
+              "The “Shortcut” header rendering differs after the change (bbox [780,188,851,205]), indicating an unintended adjustment to the header label’s padding/alignment/style compared to before."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        },
+        {
+          "bug_report": {
+            "summary": "Keyboard shortcuts filter view: Shortcut column header/value cell rendering changes (not limited to icon/action columns)",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Open Preferences (Ctrl+,).",
+              "Go to “Keyboard shortcuts”.",
+              "In the keyboard shortcuts search field, type: close.",
+              "Observe the “Shortcut” column header and the rendered shortcut-value cells (e.g., Ctrl+W, Escape, Ctrl+E)."
+            ],
+            "expected_behaviors": [
+              "UI changes should be confined to the narrow icon/action columns (alignment/spacing/consistency), as described in the change intent.",
+              "The “Shortcut” column header and shortcut-value cell styling (padding/alignment/text rendering) should remain unchanged unless explicitly intended."
+            ],
+            "actual_behaviors": [
+              "Visual differences are detected in the “Shortcut” header and in multiple shortcut-value cells (diff regions: header bbox [780,188,851,205]; value cell bboxes [778,249,834,266], [779,307,833,327], [778,336,829,353]), indicating the change impacts non-icon columns as well."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Preferences > Export sort order: field selection dropdown arrow is rendered outside the field control (detached into separate narrow column)",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Open Preferences (Options > Preferences).",
+              "Go to Export section.",
+              "In “Export sort order”, select “Use specified order”.",
+              "Look at the field selector in each row (e.g., ‘Citationkey (Internal)’, ‘Author’, ‘Title’)."
+            ],
+            "expected_behaviors": [
+              "The field selector is a single cohesive control (combo box) with its dropdown arrow integrated on the right edge of the field."
+            ],
+            "actual_behaviors": [
+              "The field text box appears without an integrated dropdown arrow, while a separate narrow column shows standalone down-arrow buttons aligned in a separate strip, making the combo box look split/broken and potentially reducing clarity/click-target size."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "LLM hallucination — misinterpreted or imagined GUI rendering"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "Preferences > Export sort order: “+ Add” does not add a new sort criterion row (no visible change after click)",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Open Preferences (Options > Preferences / Ctrl+,).",
+              "Go to Export section.",
+              "Select “Use specified order”.",
+              "Click the “+ Add” button in the “Export sort order” area."
+            ],
+            "expected_behaviors": [
+              "A new empty criterion row appears in the list/table, allowing the user to choose a field (e.g., author/year)."
+            ],
+            "actual_behaviors": [
+              "No new row appears; the table still shows the same three rows (Citationkey (Internal), Author, Title) after clicking “+ Add”."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": false,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "LLM hallucination — misinterpreted or imagined GUI rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "‘Restart required’ dialog is visually corrupted after second Save (content shows underlying table / message missing)",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Open Preferences (Options > Preferences).",
+              "Go to “Keyboard shortcuts”.",
+              "Expand “File”, select “Close library”, press a new shortcut (e.g., Ctrl+Alt+J).",
+              "Click “Save”, then dismiss the ‘Restart required’ dialog.",
+              "Click the Reset icon for “Close library”.",
+              "Click “Save” again."
+            ],
+            "expected_behaviors": [
+              "A ‘Restart required’ dialog should consistently show the warning icon and text (‘Keyboard shortcuts changed… You must restart…’) with an OK button, as in the first Save."
+            ],
+            "actual_behaviors": [
+              "On the second Save, the ‘Restart required’ dialog content area is incorrect: the warning/message content is missing and the dialog appears to show underlying Keyboard Shortcuts table rows (suggesting transparency or wrong content rendering)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

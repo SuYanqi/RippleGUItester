@@ -1,0 +1,94 @@
+{
+  "bug_id": 14701,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "New Entry dialog default size/layout changed significantly (much narrower; leaves large unused area)",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Create a new empty library.",
+              "Go to Library → Add entry using… (opens the “New Entry” dialog)."
+            ],
+            "expected_behaviors": [
+              "The “New Entry” dialog should open with the same default size/geometry as before (no major, unexpected shrink that leaves large unused space)."
+            ],
+            "actual_behaviors": [
+              "After the change, the “New Entry” dialog opens substantially narrower than before, leaving a large blank area of the main window visible on the right; recommended-type buttons reflow (e.g., “Misc” shifts position) due to the reduced width."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "New Entry dialog: Recommended types layout broken (blank type button; 'Misc' appears displaced/duplicated)",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Create/open any library.",
+              "Open the “New Entry” dialog (e.g., Add entry).",
+              "Look at the “Recommended types” buttons."
+            ],
+            "expected_behaviors": [
+              "Each recommended entry type is shown as a single labeled button (e.g., Article, Book, InProceedings, TechReport, Misc).",
+              "No blank/unnamed entry-type buttons appear."
+            ],
+            "actual_behaviors": [
+              "The “Recommended types” area shows a small blank/unnamed button on the right, while “Misc” appears in an unexpected position (stacked under/near “Article”), suggesting the type buttons are mis-laid out or duplicated."
+            ]
+          },
+          "is_duplicate": true
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Clean up entries dialog column header is truncated at 20pt font (\"Field na…\")",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Open Preferences.",
+              "Enable overriding the application font size and set it to 20 pt; apply changes.",
+              "Create/open any library and select an entry.",
+              "Open Quality → Clean up entries."
+            ],
+            "expected_behaviors": [
+              "Dialog layout scales so labels/headers are readable (e.g., column header shows full \"Field name\"), without truncation at the default dialog size."
+            ],
+            "actual_behaviors": [
+              "The left column header is truncated and displayed as \"Field na…\" in the opened dialog."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

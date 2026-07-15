@@ -1,0 +1,154 @@
+{
+  "bug_id": 6047,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Editor viewport/wrapping/scroll metrics differ after pasting identical content (caret position and visible wrapped text change)",
+            "steps_to_reproduce": [
+              "Open the application to the main editor window.",
+              "Create a new Markdown document.",
+              "Paste the provided multi-block content (CODEBLOCK_A..., 25 filler paragraphs, CODEBLOCK_B... with python code fence) into the new document.",
+              "Observe the lower-right editor pane right after the paste completes."
+            ],
+            "expected_behaviors": [
+              "After pasting identical content, the editor should land in a consistent caret position and show consistent wrapped lines/viewport for the same window size.",
+              "Scrollbar/thumb position and status-bar cursor position should be consistent given identical content and no extra interactions."
+            ],
+            "actual_behaviors": [
+              "The lower-right editor pane shows different wrapped text/viewport (e.g., the last visible filler line breaks differently and the caret ends up at a different spot), and the editor’s scrollbar/status indicators differ between before/after captures, despite the same paste input."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        },
+        {
+          "bug_report": {
+            "summary": "Ctrl+F opens Find bar but also unexpectedly jumps editor viewport to a different location (CODEBLOCK_B section)",
+            "steps_to_reproduce": [
+              "Create/open a long Markdown document with filler paragraphs and two code blocks (as in the test content).",
+              "Scroll so a mid-document filler paragraph is visible in the lower-right editor pane.",
+              "Press Ctrl+F to open the Find UI."
+            ],
+            "expected_behaviors": [
+              "Find UI opens without changing the current scroll position/viewport content (aside from minor vertical shift to accommodate the Find bar)."
+            ],
+            "actual_behaviors": [
+              "After Ctrl+F, the lower-right editor pane content jumps to a different part of the document (showing CODEBLOCK_B__4A8E11D0 and the python code block), instead of staying at the previously visible filler paragraph area."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "GUI element location or interaction error (non-deterministic behavior)"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "Status bar shows 0 words / 0 characters despite visible content until Ctrl+F is pressed",
+            "steps_to_reproduce": [
+              "Create a new Markdown document.",
+              "Paste a large amount of text (e.g., the provided CODEBLOCK_A + filler paragraphs + CODEBLOCK_B structure).",
+              "Observe the lower-right editor pane status bar word/character counts.",
+              "Press Ctrl+F."
+            ],
+            "expected_behaviors": [
+              "Word and character counts should reflect the document content immediately after paste and remain consistent when opening Find."
+            ],
+            "actual_behaviors": [
+              "Before Ctrl+F, the status bar shows '0 words' and '0 characters' even though multiple paragraphs are visible in the editor. After Ctrl+F, the counts update to non-zero values (e.g., hundreds of words and thousands of characters)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": false,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Visual artifact/changed rendering on the vertical pane divider/scroll area (small segment differs)",
+            "steps_to_reproduce": [
+              "Open the application to the main editor window.",
+              "Open the File menu (File → shows dropdown, as in screenshot)."
+            ],
+            "expected_behaviors": [
+              "The vertical divider/scroll area between panes should render consistently (no extra/missing segment) while menus are open."
+            ],
+            "actual_behaviors": [
+              "A small vertical segment on/near the pane divider/scroll area (around x≈895–905, y≈538–584) renders differently after the change (appears as an extra/missing/altered strip compared to before)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "HTML block comment styling not applied uniformly across all characters (notably around “{}” / “()”), including in Light mode",
+            "steps_to_reproduce": [
+              "Set editor theme mode to Dark.",
+              "Create a new Markdown document.",
+              "Enter the block comment:\n<!--\nComment line 1: TODO check renderer\nComment line 2: symbols [] {} ()\nComment line 3: 12345\n-->",
+              "Switch editor theme mode to Light (or Match).",
+              "Return to the comment block."
+            ],
+            "expected_behaviors": [
+              "The entire comment block (all characters on all lines) uses consistent block-comment styling (monospace/comment color) and a uniform block background across theme switches."
+            ],
+            "actual_behaviors": [
+              "Parts of the comment content (especially the “{}” / “()” portion on the symbols line; diff around bbox ~[657,238]-[678,262]) render differently than the surrounding comment text, suggesting the block-comment styling/background is not applied consistently across the full CommentBlock range after the refactor."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "LLM hallucination — misinterpreted or imagined GUI rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

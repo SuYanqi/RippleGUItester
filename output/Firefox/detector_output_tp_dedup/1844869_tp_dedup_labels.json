@@ -1,0 +1,63 @@
+{
+  "bug_id": 1844869,
+  "ground_truth_bug_ids": [
+    1870574,
+    1872139
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "about:logins: Action controls (Edit/Remove/Copy) styling/layout differs after refactor to self-contained command buttons",
+            "steps_to_reproduce": [
+              "Open Firefox Nightly",
+              "Navigate to about:logins",
+              "Create and save a new login (e.g., https://login.live.com / delete.me@example.com)",
+              "View the saved login’s details page and compare the action controls (Edit, Remove, Copy buttons and eye icon) to the pre-change build"
+            ],
+            "expected_behaviors": [
+              "Edit, Remove, and Copy command buttons retain identical styling and layout (padding, alignment, icon/text positioning) compared to before the change, per the intent to preserve styling/behavior"
+            ],
+            "actual_behaviors": [
+              "Multiple visible diffs are detected on the command-button UI regions (Edit/Remove buttons and the per-field Copy buttons/eye icon), indicating a change in rendering/styling/layout after the refactor (see diff regions around the Edit button, Remove button, and Copy buttons)."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "bug_id": 14515,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "“Add group” control renders as a large bottom button instead of the prior compact sidebar control",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Create a new library (File → New library → New empty library).",
+              "Open the File menu (and/or proceed to save the library).",
+              "Look at the bottom of the left sidebar."
+            ],
+            "expected_behaviors": [
+              "“Add group” appears in the same location/style as before (compact control in the sidebar; not replacing other panes)."
+            ],
+            "actual_behaviors": [
+              "After the change, “Add group” appears as a large button at the bottom of the sidebar, coinciding with the disappearance of the Web search pane content."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Preferences dialog footer buttons changed: Cancel button appears (and looks disabled) only after the change",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Open Options → Preferences.",
+              "Look at the bottom-right footer buttons."
+            ],
+            "expected_behaviors": [
+              "Preferences dialog footer controls should be consistent with prior behavior (same buttons and enabled/disabled state)."
+            ],
+            "actual_behaviors": [
+              "After the change, a Cancel button is present next to Save (and appears disabled), whereas before the change only the Save button is visible (no Cancel button shown)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "LLM hallucination — misinterpreted or imagined GUI rendering"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "‘Restart required’ modal dialog content corrupted and OK button missing/blank after export-preferences save",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Open Options → Preferences.",
+              "Use the export preferences function and complete the Save action in the system file chooser (as in the scenario).",
+              "Observe the resulting ‘Restart required’ modal dialog."
+            ],
+            "expected_behaviors": [
+              "The ‘Restart required’ dialog should show the correct restart message (e.g., reason for restart) and provide a visible actionable button such as ‘OK’ to dismiss it."
+            ],
+            "actual_behaviors": [
+              "The ‘Restart required’ dialog displays incorrect/garbled content (shows underlying Preferences page text like ‘User interface’ and ‘Do not show donation prompt again’) and the expected ‘OK’ button is not visible (button area appears blank)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

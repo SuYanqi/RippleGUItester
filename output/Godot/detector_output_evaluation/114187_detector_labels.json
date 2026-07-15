@@ -1,0 +1,56 @@
+{
+  "bug_id": 114187,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Godot splash window title no longer shows project name and icon appears missing/blank",
+            "steps_to_reproduce": [
+              "Create/open a project (e.g., graphedit-zoom-dropdown-sizing).",
+              "Launch the Godot editor and observe the splash/loading window while the editor loads."
+            ],
+            "expected_behaviors": [
+              "Splash/loading window title should include the project name (e.g., \"<project> - Godot Engine\").",
+              "Splash/loading window should show the Godot window icon in the title bar."
+            ],
+            "actual_behaviors": [
+              "Splash/loading window title shows only \"Godot\" (project name missing).",
+              "Top-left title bar icon is blank/white instead of the Godot icon."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

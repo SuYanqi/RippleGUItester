@@ -1,0 +1,60 @@
+{
+  "bug_id": 114162,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Editor Settings → Interface → Theme: Contrast numeric field appears to use different precision/formatting after code change",
+            "steps_to_reproduce": [
+              "Open Godot Editor.",
+              "Go to Editor → Editor Settings → Interface → Theme.",
+              "Observe the Contrast numeric field (optionally triple-click it to highlight the full value)."
+            ],
+            "expected_behaviors": [
+              "Contrast numeric field should display a consistent value/precision (same formatting across builds), allowing fine-grained adjustments (e.g., showing 0.55 rather than rounding unexpectedly).",
+              "Triple-click should highlight the full numeric value as displayed."
+            ],
+            "actual_behaviors": [
+              "Contrast numeric field display/selection differs between builds; in the after-change screenshot the value appears shorter/rounded differently compared to before (indicating changed precision/formatting)."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

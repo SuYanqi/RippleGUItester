@@ -1,0 +1,50 @@
+{
+  "bug_id": 114177,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Entering “/etc” in FileDialog Path field does not navigate; listing stays at filesystem root",
+            "steps_to_reproduce": [
+              "Open Project → Install Android Build Template…",
+              "Choose “Install from File (local ZIP)” to open the file chooser.",
+              "In the dialog’s Path field, type “/etc”. (Then press Enter—next step in scenario.)"
+            ],
+            "expected_behaviors": [
+              "After entering “/etc” (and confirming), the dialog should navigate to /etc and show /etc contents in the directory grid, with path indicators reflecting /etc."
+            ],
+            "actual_behaviors": [
+              "The Path field shows “/etc”, but the directory grid still shows filesystem root contents (bin, boot, dev, etc, home, …) rather than /etc contents. The top-right path/dropdown display is also blank."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "LLM hallucination — predicted an non-executed action as executed"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

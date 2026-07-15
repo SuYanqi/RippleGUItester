@@ -1,0 +1,115 @@
+{
+  "bug_id": 5964,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Status bar word/character counts differ after code change for the same document state",
+            "steps_to_reproduce": [
+              "Open the application (same initial state/tutorial file visible).",
+              "Observe the bottom status bar statistics for the left editor pane (word and character counts).",
+              "Dismiss the update notification dialog (click “Not now”)."
+            ],
+            "expected_behaviors": [
+              "For the same document content and UI state, word and character counts should match previous behavior (no change introduced by link/image parser refactor)."
+            ],
+            "actual_behaviors": [
+              "Word count and character count values are lower in the after-change build (e.g., ~1,596 words / 9,023 characters before vs ~1,573 words / 8,897 characters after)."
+            ]
+          },
+          "is_duplicate": null
+        },
+        {
+          "bug_report": {
+            "summary": "Word/character count calculation changed for Markdown link with title (counts include URL/title in after-change build)",
+            "steps_to_reproduce": [
+              "Create a new Markdown file (defaults) so it opens in an editor pane.",
+              "Enter `[Example](https://en.wikipedia.org/wiki/Function_(mathematics) \"Wikipedia article\")`.",
+              "Check the word/character counts for that new file (top-right word indicator and/or the pane’s bottom status bar)."
+            ],
+            "expected_behaviors": [
+              "Word/character counts should remain consistent with pre-change behavior for Markdown links (e.g., counting the visible link text similarly to before)."
+            ],
+            "actual_behaviors": [
+              "Before-change build shows ~1 word / 7 characters (consistent with counting only “Example”).",
+              "After-change build shows a much larger count (e.g., ~6 words / 42 characters), indicating the URL/title (or other non-visible link parts) are now included in stats."
+            ]
+          },
+          "is_duplicate": true
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Right-click on the outer text portion no longer shows link context menu (outer portion not recognized as link)",
+            "steps_to_reproduce": [
+              "Create/open a Markdown file.",
+              "Paste: `[Outer [Inner](https://example.com/inner)](https://example.com/outer)`",
+              "Right-click on the outer text portion (e.g., on “Outer”, not on “Inner”)."
+            ],
+            "expected_behaviors": [
+              "A link-specific context menu should appear for the outer link region, exposing link actions (Open/Copy/Remove link) and showing the outer URL (https://example.com/outer)."
+            ],
+            "actual_behaviors": [
+              "After the change, right-clicking the outer text portion shows the generic editor context menu (Bold/Italic/Insert link/etc.) instead of a link context menu, implying the outer portion is not treated as a link."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Reference-style link renders with visible bracket/reference markup in preview (incorrect link text rendering)",
+            "steps_to_reproduce": [
+              "Create/open a Markdown file.",
+              "Enter the following Markdown (two lines):",
+              "`[You can use numbers for reference-style link definitions][1]`",
+              "`[1]: https://slashdot.org/`",
+              "Observe the rendered preview of the first line."
+            ],
+            "expected_behaviors": [
+              "The rendered link text should display as: “You can use numbers for reference-style link definitions” (clickable), without showing the surrounding `[` `]` or the reference id `[1]` in the visible text."
+            ],
+            "actual_behaviors": [
+              "After the change, the rendered output shows the reference-style link with visible bracket/reference markup in the displayed text (the preview appears to include literal `[` / `]` and/or reference markers), instead of rendering only the clean link label."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "bug_id": 5942,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Assets Manager (Snippets): snippet list column is too narrow, causing excessive name truncation despite available space",
+            "steps_to_reproduce": [
+              "Open File → Preferences… → Assets Manager.",
+              "Go to the “Snippets” tab.",
+              "Create a new snippet and rename it to a longer name (e.g., “Save Timing Test 01”).",
+              "Observe the snippet entry in the left snippet list."
+            ],
+            "expected_behaviors": [
+              "The snippet list (SelectableList) should use available width appropriately (or be resizable) so snippet names are not excessively truncated when there is ample dialog space."
+            ],
+            "actual_behaviors": [
+              "The snippet list column remains very narrow and the snippet name is truncated with an ellipsis (e.g., “Save-Timing-Test...”), even though there is significant unused horizontal space in the window."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "bug_id": 1927404,
+  "ground_truth_bug_ids": [
+    1941691,
+    1978801
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "View Source context menu: “View Page Source” item becomes disabled/greyed out after change",
+            "steps_to_reproduce": [
+              "Open a page (e.g., the provided multi-line data: URL).",
+              "Open View Page Source (Ctrl+U) so the view-source tab is active.",
+              "Right-click inside the source code area to open the context menu."
+            ],
+            "expected_behaviors": [
+              "“View Page Source” menu item is enabled/available (as in the before-build screenshot)."
+            ],
+            "actual_behaviors": [
+              "“View Page Source” menu item is disabled/greyed out (after-build screenshot)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "View-source plain-text rendering/positioning differs (text block alignment/leading whitespace changes) after change",
+            "steps_to_reproduce": [
+              "Navigate to: data:text/plain;charset=utf-8,alpha_line%0Abeta_line%0Agamma_line",
+              "In the address bar, load: view-source:data:text/plain;charset=utf-8,alpha_line%0Abeta_line%0Agamma_line"
+            ],
+            "expected_behaviors": [
+              "The displayed source text should render consistently (no unexpected leading whitespace/offset changes) and match the actual document text layout."
+            ],
+            "actual_behaviors": [
+              "The rendered source text block at the top-left shifts/alters alignment (appears with different leading whitespace/positioning compared to before)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}
