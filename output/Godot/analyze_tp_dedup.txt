@@ -1,0 +1,30 @@
+113611_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+114084_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+114086_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114091_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114115_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114120_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+114122_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114133_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+114141_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+114159_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114162_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+114163_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114164_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114169_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+114176_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114177_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114187_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114190_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114202_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114231_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+114234_tp_dedup_labels.json: before=2, unique_after=2, duplicate=0
+114325_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114335_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114364_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+114482_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+
+========== Overall Summary ==========
+Total TP bug reports (before dedup): 10
+Total unique TP bugs (after dedup): 10
+Total duplicate TP bug reports: 0

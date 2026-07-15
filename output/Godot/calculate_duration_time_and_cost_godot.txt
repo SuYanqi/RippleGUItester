@@ -1,0 +1,28 @@
+========================================================================
+Repository: godot
+Total PR number: 25
+------------------------------------------------------------------------
+[Test Scenario Generation]
+  Time: 101.24 mins (9.6% of total time)
+  Cost: $6.14 (4.6% of total cost)
+  Avg time / PR: 4.05 mins
+  Avg cost / PR: $0.25
+
+[Test Scenario Execution]
+  Time: 628.21 mins (59.4% of total time)
+  Cost: $101.14 (76.2% of total cost)
+  Avg time / PR: 25.13 mins
+  Avg cost / PR: $4.05
+
+[Bug Detection]
+  Time: 328.98 mins (31.1% of total time)
+  Cost: $25.39 (19.1% of total cost)
+  Avg time / PR: 13.16 mins
+  Avg cost / PR: $1.02
+
+[Overall]
+  Time: 1058.43 mins (100.0%)
+  Cost: $132.68 (100.0%)
+  Avg time / PR: 42.34 mins
+  Avg cost / PR: $5.31
+========================================================================

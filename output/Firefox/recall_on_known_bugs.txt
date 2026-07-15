@@ -1,0 +1,14 @@
+
+RQ3: Firefox Known Regression Recall Venn Counts
+----------------------------------------------------------------------
+Unique TP bugs detected by RippleGUItester: 41
+Ground-truth introduced bugs used for evaluation: 46
+Our approach only: 28
+Overlap: 13
+Ground truth only: 33
+----------------------------------------------------------------------
+Saved Venn diagram to:
+  /workspaces/RippleGUItester/output/Firefox/firefox_groundtruth_venn.pdf
+  /workspaces/RippleGUItester/output/Firefox/firefox_groundtruth_venn.png
+
+Opened in VS Code: /workspaces/RippleGUItester/output/Firefox/firefox_groundtruth_venn.png

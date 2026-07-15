@@ -18,23 +18,22 @@ python -m pip install --user -e .
 
 echo ""
 echo "📥 Downloading datasets..."
-if [ ! -d "data" ]; then
-    wget -q https://github.com/SuYanqi/RippleGUItester/releases/download/data/data.zip
-    unzip -q data.zip
-    rm -f data.zip
-    echo "   ✅ data/ downloaded and extracted"
-else
-    echo "   ⏭️  data/ already exists, skipping"
-fi
 
-if [ ! -d "output" ]; then
-    wget -q https://github.com/SuYanqi/RippleGUItester/releases/download/data/output.zip
-    unzip -q output.zip
-    rm -f output.zip
-    echo "   ✅ output/ downloaded and extracted"
-else
-    echo "   ⏭️  output/ already exists, skipping"
-fi
+# Remove stale zip files and directories if they exist
+[ -f "data.zip" ] && rm -f data.zip && echo "   🗑️  Removed stale data.zip"
+[ -f "output.zip" ] && rm -f output.zip && echo "   🗑️  Removed stale output.zip"
+[ -d "data" ] && rm -rf data && echo "   🗑️  Removed stale data/"
+[ -d "output" ] && rm -rf output && echo "   🗑️  Removed stale output/"
+
+wget -q https://github.com/SuYanqi/RippleGUItester/releases/download/data/data.zip
+unzip -qo data.zip
+rm -f data.zip
+echo "   ✅ data/ downloaded and extracted"
+
+wget -q https://github.com/SuYanqi/RippleGUItester/releases/download/data/output.zip
+unzip -qo output.zip
+rm -f output.zip
+echo "   ✅ output/ downloaded and extracted"
 
 echo ""
 echo "✅ Setup complete!"

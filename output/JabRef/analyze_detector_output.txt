@@ -1,0 +1,33 @@
+============================================================
+Labeling Summary
+------------------------------------------------------------
+Total TestBugs labeled: 18
+Average number of ground truth bugs per TestBug: 0.00
+Average number of test scenarios per TestBug: 5.78
+
+Total detected bugs: 40
+Total detected bugs per test bug: 2.22
+****************************************
+True positives: 17
+True positive ratio: 0.4250
+True positive introduced: 15
+True positive introduced groundtruth: 0
+****************************************
+False positives: 23
+False positive ratio: 0.5750
+****************************************
+
+============================================================
+False Positive Reason Statistics
+------------------------------------------------------------
+Total false positives: 23
+Unique reason categories: 4
+
+Unstable GUI layout/rendering                                        7 (30.43%)
+LLM hallucination — misinterpreted or imagined GUI rendering         6 (26.09%)
+Screenshot timing or rendering delay                                 5 (21.74%)
+Expected GUI difference due to intended code change                  5 (21.74%)
+============================================================
+
+Ground truth hit rate: 0.00
+Hit rate: 0.39

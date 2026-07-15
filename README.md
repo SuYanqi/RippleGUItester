@@ -170,12 +170,8 @@ output/{Repository}/output/{PR_ID}/
 
 ⚠️ **Note**: The artifact contains a **correction** to the evaluation statistics:
 
-* **Issue.** In the accepted paper, one Firefox true positive (TP) bug was mistakenly counted as a false positive (FP).
-
-* **Correction.** This artifact includes the corrected evaluation results:
-
-  * **Table 1:** Firefox TP +1, FP −1 -> Total TP +1, Total FP −1
-  * **RQ2:** The number of analyzed false-positive bugs decreases by 1.
+  * **Table 1:** JabRef TP −2, FP +2 -> Total TP −2, Total FP +2
+  * **RQ2:** The number of analyzed false-positive bugs increases by 2.
 
 * **Impact.** This correction affects only the reported statistics and does **not** change the experimental findings or the conclusions of the paper.
 

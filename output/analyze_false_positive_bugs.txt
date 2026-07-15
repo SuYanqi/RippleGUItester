@@ -1,0 +1,29 @@
+
+RQ2: False Positive Distribution
+--------------------------------------------------------------------------------------------------------------
+Category / Subcategory                                                            Count      Ratio
+--------------------------------------------------------------------------------------------------------------
+GUI Rendering and Temporal Instability                                               78      45.1%
+  - Screenshot timing or rendering delay                                             39           
+  - Unstable GUI layout/rendering                                                    39           
+
+LLM Reasoning and Hallucination Errors                                               49      28.3%
+  - LLM hallucination — misinterpreted or imagined GUI rendering                     40           
+  - LLM hallucination — predicted an non-executed action as executed                  6           
+  - Unreasonable or unnecessary improvement suggestion, not a real issue              3           
+
+GUI Interaction and Replay Instability                                               26      15.0%
+  - GUI element location or interaction error (non-deterministic behavior)           15           
+  - UI layout shift leading to incorrect replay click                                 4           
+  - Code-induced GUI difference leading to replay mismatch                            7           
+
+Expected GUI Differences due to Code Changes                                         18      10.4%
+  - Expected GUI difference due to intended code change                              18           
+
+Others                                                                                2       1.2%
+  - Unstable test data causing GUI inconsistency during replay                        1           
+  - Uncertain whether true positive or false positive                                 1           
+
+--------------------------------------------------------------------------------------------------------------
+Total                                                                               173     100.0%
+--------------------------------------------------------------------------------------------------------------

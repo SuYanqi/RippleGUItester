@@ -1,0 +1,23 @@
+14475_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+14489_tp_dedup_labels.json: before=2, unique_after=2, duplicate=0
+14498_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+14503_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+14504_tp_dedup_labels.json: before=3, unique_after=3, duplicate=0
+14508_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+14509_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+14515_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+14537_tp_dedup_labels.json: before=3, unique_after=3, duplicate=0
+14685_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+14700_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+14701_tp_dedup_labels.json: before=3, unique_after=2, duplicate=1
+14704_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+14709_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+14715_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+14719_tp_dedup_labels.json: before=0, unique_after=0, duplicate=0
+14732_tp_dedup_labels.json: before=1, unique_after=1, duplicate=0
+14759_tp_dedup_labels.json: before=2, unique_after=1, duplicate=1
+
+========== Overall Summary ==========
+Total TP bug reports (before dedup): 17
+Total unique TP bugs (after dedup): 15
+Total duplicate TP bug reports: 2

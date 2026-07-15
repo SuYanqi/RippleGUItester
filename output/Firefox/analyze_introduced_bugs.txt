@@ -1,0 +1,51 @@
+
+=== Introduced Bug Type Distribution ===
+GUI bug: 47 (87.0%)
+Crash / stack trace / error log: 7 (13.0%)
+Total: 54
+
+=== Bug Status Distribution ===
+Valid bug: 49 (90.7%)
+Invalid: Duplicate: 3 (5.6%)
+Invalid: WontFix: 1 (1.9%)
+Invalid: WorksForMe: 1 (1.9%)
+Total: 54
+
+=== Detected by Our Approach ===
+Not detected: 41 (75.9%)
+Detected: 13 (24.1%)
+Total: 54
+
+=== Bug Type x Detected ===
+
+GUI bug (Total: 47)
+  Detected: 12 (25.5%)
+  Not detected: 35 (74.5%)
+
+Crash / stack trace / error log (Total: 7)
+  Not detected: 6 (85.7%)
+  Detected: 1 (14.3%)
+
+=== Bug Status x Detected ===
+
+Valid bug (Total: 49)
+  Detected: 12 (24.5%)
+  Not detected: 37 (75.5%)
+
+Invalid: WontFix (Total: 1)
+  Not detected: 1 (100.0%)
+
+Invalid: Duplicate (Total: 3)
+  Detected: 1 (33.3%)
+  Not detected: 2 (66.7%)
+
+Invalid: WorksForMe (Total: 1)
+  Not detected: 1 (100.0%)
+
+=== Crash / Log Bugs Summary ===
+Total Crash / Log Bugs: 7
+
+--- Crash / Log Bugs x Bug Status ---
+Valid bug: 5 (71.4%)
+Invalid: WontFix: 1 (14.3%)
+Invalid: WorksForMe: 1 (14.3%)

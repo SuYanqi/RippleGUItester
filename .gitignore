@@ -40,8 +40,6 @@ Thumbs.db
 log/
 
 # Data and output (distributed via GitHub Releases)
-data/
-output/
 *.zip
 
 # Temporary files
