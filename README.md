@@ -280,8 +280,3 @@ To reproduce the overhead breakdown visualization shown in **Figure 9**, run:
 ```bash
 python -m scripts.evaluation.calculate_overhead_breakdown
 ```
-
-### Original output
-
-https://drive.google.com/file/d/1J33x3A2nt_hVmi4DE0Ho8XyeZgmYFuww/view?usp=sharing
-
