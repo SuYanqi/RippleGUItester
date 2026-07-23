@@ -65,7 +65,7 @@
           },
           "is_duplicate": false,
           "is_true_positive": true,
-          "is_introduced": true,
+          "is_introduced": false,
           "hit_ground_truth": null,
           "false_positive_reasons": []
         }
