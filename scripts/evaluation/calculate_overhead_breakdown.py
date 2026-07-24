@@ -20,6 +20,9 @@ import subprocess
 from pathlib import Path
 from typing import Dict, List, Optional
 
+import matplotlib
+matplotlib.rcParams["pdf.fonttype"] = 42
+matplotlib.rcParams["ps.fonttype"] = 42
 import matplotlib.pyplot as plt
 
 
