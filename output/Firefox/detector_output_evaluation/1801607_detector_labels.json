@@ -1,0 +1,188 @@
+{
+  "bug_id": 1801607,
+  "ground_truth_bug_ids": [
+    1816073
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Certificate Manager dialog default size/footprint increases after change (covers more of Preferences page)",
+            "steps_to_reproduce": [
+              "Open about:preferences → Privacy & Security.",
+              "Scroll to Certificates.",
+              "Click “Manage Certificates…” / “View Certificates…” to open Certificate Manager."
+            ],
+            "expected_behaviors": [
+              "Certificate Manager dialog opens at the standard/default size (v106-like), without unexpected expansion in width/height beyond what’s needed to keep the certificate list reasonable and the bottom action buttons visible."
+            ],
+            "actual_behaviors": [
+              "Certificate Manager dialog opens with a noticeably larger overall footprint (wider/taller), covering more of the underlying Preferences page and altering overall spacing/layout compared to before."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "LLM hallucination — misinterpreted or imagined GUI rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Certificate Manager table/list region still expands too tall after change (across tabs), reducing space for bottom action buttons",
+            "steps_to_reproduce": [
+              "Open about:preferences → Privacy & Security",
+              "Scroll to the Certificates section",
+              "Click “View Certificates…” (Manage Certificates…) to open Certificate Manager",
+              "Switch between tabs (e.g., Your Certificates → People → Servers → Authorities)"
+            ],
+            "expected_behaviors": [
+              "The certificate list/table area remains constrained to a reasonable height (v106-like)",
+              "Bottom action buttons and the OK button remain clearly visible with adequate separation from the table, without needing to scroll at default dialog size"
+            ],
+            "actual_behaviors": [
+              "The list/table area is taller after the change and occupies more of the dialog height across tabs",
+              "The bottom action buttons/OK button are positioned closer to the bottom edge with reduced whitespace/separation compared to before"
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "LLM hallucination — misinterpreted or imagined GUI rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Certificate Manager footer padding reduced after change; OK button too close to bottom edge/resize corner at small heights",
+            "steps_to_reproduce": [
+              "Open about:preferences → Privacy & Security → Certificates.",
+              "Click “View Certificates…” to open the Certificate Manager dialog.",
+              "Resize the dialog to a short height (approx. 250–300px) by dragging the bottom edge upward.",
+              "Observe the spacing around the bottom action buttons and the OK button in the bottom-right."
+            ],
+            "expected_behaviors": [
+              "Footer/action area retains normal padding similar to v106-like layout; OK button is not cramped against the bottom edge or resize corner."
+            ],
+            "actual_behaviors": [
+              "Footer padding appears reduced after the change; the OK button sits very close to the dialog bottom edge/resize corner, making the footer look cramped and potentially harder to interact with precisely."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Page Info (Security tab) layout breaks after resizing: bottom Help button not anchored; Privacy & History values misaligned",
+            "steps_to_reproduce": [
+              "Open Firefox with a fresh profile",
+              "Navigate to a page (e.g., data:text/html,<title>Tabbox%20Test</title><h1>Tabbox%20Test</h1>)",
+              "Open Page Info (Ctrl+I)",
+              "Go to the Security tab",
+              "Resize the Page Info window smaller in height (drag bottom edge/corner upward), then resize back larger"
+            ],
+            "expected_behaviors": [
+              "Resizing should reflow the Security tab content without introducing large unused blank areas.",
+              "Bottom-row controls (e.g., Help button) should remain aligned/anchored to the bottom of the dialog.",
+              "Security tab field/value layout (e.g., the ‘No’ values in Privacy & History) should remain consistently aligned and not shift unexpectedly."
+            ],
+            "actual_behaviors": [
+              "After the code change, the Security tab shows a large empty area at the bottom and the Help button is positioned higher instead of staying at the bottom edge (bbox no. 5).",
+              "The ‘No’ values in the Privacy & History section appear shifted/misaligned compared to before (bboxes no. 2–4).",
+              "Overall dialog content region differs significantly after resizing (bbox no. 0), suggesting incorrect resize/layout behavior."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": 1816073,
+          "false_positive_reasons": []
+        },
+        {
+          "bug_report": {
+            "summary": "Page Info dialog collapses to title-bar-only height (content disappears) after interacting with the title bar",
+            "steps_to_reproduce": [
+              "Open Firefox",
+              "Navigate to any page (e.g., data:text/html,<title>Tabbox%20Test</title><h1>Tabbox%20Test</h1>)",
+              "Open Page Info (Ctrl+I)",
+              "Switch to the Security tab (or leave default)",
+              "Right-click the Page Info window title bar (intended to open the window menu/resize options)"
+            ],
+            "expected_behaviors": [
+              "Right-clicking the title bar should open the window menu without changing the dialog size.",
+              "Page Info dialog content should remain visible and usable; the window should not collapse to an unusably small height."
+            ],
+            "actual_behaviors": [
+              "In the after-change build, the Page Info window collapses to a very small height (appears to show only the title bar/tab strip), and the Security tab content is no longer visible (diff spans most of the window area; bbox no. 0)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": false,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        },
+        {
+          "bug_report": {
+            "summary": "Page Info dialog cannot be resized back to normal height; remains collapsed to tab strip only",
+            "steps_to_reproduce": [
+              "Navigate to a page (e.g., data:text/html,<title>Tabbox%20Test</title><h1>Tabbox%20Test</h1>)",
+              "Open Page Info (Ctrl+I)",
+              "Resize the Page Info window smaller in height",
+              "Attempt to resize it back larger by dragging the bottom edge downward"
+            ],
+            "expected_behaviors": [
+              "Dragging the bottom edge downward should increase the Page Info window height and restore visibility of the tab content (e.g., Security tab content)."
+            ],
+            "actual_behaviors": [
+              "After the code change, the Page Info window stays at a very small height (appears to show only the title bar/tab strip) and does not expand to show its content even after the resize-larger drag (diff spans most of the window area; bbox no. 0)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "GUI element location or interaction error (non-deterministic behavior)"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

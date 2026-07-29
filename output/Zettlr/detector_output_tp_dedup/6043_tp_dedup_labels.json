@@ -1,0 +1,56 @@
+{
+  "bug_id": 6043,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Ctrl+F opens Find UI but unexpectedly selects text and pre-fills the query",
+            "steps_to_reproduce": [
+              "Open a Markdown document in the editor.",
+              "Place the caret inside text (do not select text).",
+              "Press Ctrl+F to open the Find UI.",
+              "Observe the Find input field and the document selection state."
+            ],
+            "expected_behaviors": [
+              "Ctrl+F should open the Find UI without changing the current caret/selection state.",
+              "The Find input should not be automatically populated unless there is an intentional selection-based feature (and even then should match consistent pre-change behavior)."
+            ],
+            "actual_behaviors": [
+              "After the code change, pressing Ctrl+F results in an automatic selection being present (status shows “5 selected …”) and the Find field is pre-filled with the selected text (“and then some trailing text.”), whereas before the change the Find field opened empty and without introducing a new selection."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

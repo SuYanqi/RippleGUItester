@@ -1,0 +1,61 @@
+{
+  "bug_id": 1890721,
+  "ground_truth_bug_ids": [
+    1897021,
+    1936509,
+    1897371,
+    1899801
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "After canceling Firefox Screenshots overlay, typing “ñö” into the page input results in missing character (only “ñ” appears)",
+            "steps_to_reproduce": [
+              "Load the provided Keyboard Test data URL (auto-focused input).",
+              "Start Firefox Screenshots via context menu → “Take Screenshot”.",
+              "Type “ñö” while the overlay is active (should not reach the page).",
+              "Cancel the screenshot overlay (Esc/cancel).",
+              "Click the page input field and type “ñö”."
+            ],
+            "expected_behaviors": [
+              "After the overlay is closed, typing works normally and the input contains exactly: “ñö”."
+            ],
+            "actual_behaviors": [
+              "After the overlay is closed, the input contains only: “ñ” (the “ö” is not entered)."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

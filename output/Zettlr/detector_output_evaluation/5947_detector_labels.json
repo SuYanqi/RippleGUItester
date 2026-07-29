@@ -1,0 +1,137 @@
+{
+  "bug_id": 5947,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Document statistics (words/characters) change drastically after fix when Pandoc attribute block is present",
+            "steps_to_reproduce": [
+              "Create/open a Markdown document.",
+              "Type a heading with a Pandoc attribute block containing quoted values, e.g. `# Title {style=\"font-family: 'Noto Serif'; font-size: 12px; letter-spacing: 0.05em;\"}`.",
+              "Observe the word/character counters in the UI (top-right indicator and/or editor status bar)."
+            ],
+            "expected_behaviors": [
+              "Word/character counts should remain consistent with the visible source text (or at minimum should not change unexpectedly compared to previous behavior for the same typed content)."
+            ],
+            "actual_behaviors": [
+              "For the same visible content, the counters differ significantly between builds: before-change shows higher counts (e.g., 18 words / 115 characters) while after-change shows much lower counts (e.g., 7 words / 38 characters), suggesting the attribute block is being excluded from stats after the change."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Stray vertical line/artifact appears near right-side pane divider after change",
+            "steps_to_reproduce": [
+              "Open Zettlr to the main editor window with split panes visible.",
+              "Open (or create) any document so the right-side panes are shown.",
+              "Look near the right editor/preview area around the horizontal pane divider (approx. x=894–904, y=534–562)."
+            ],
+            "expected_behaviors": [
+              "Pane dividers and adjacent UI should render cleanly without extra stray marks/lines."
+            ],
+            "actual_behaviors": [
+              "A small vertical line/strip renders differently (appears as an artifact/extra mark) in the divider area (bbox ~[894,534,904,562])."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Pandoc image attributes render as stray literal text in preview (e.g., {width=\"10\" height=\"25\"})",
+            "steps_to_reproduce": [
+              "Create/open a Markdown document.",
+              "Type the following on its own line: ![Pixel](test.png){width=\"10\" height=\"25\"}",
+              "View the rendered preview."
+            ],
+            "expected_behaviors": [
+              "The attribute block should be parsed and applied to the image (or at minimum not rendered as visible text).",
+              "No trailing `{width=\"10\" height=\"25\"}` text should appear in the preview."
+            ],
+            "actual_behaviors": [
+              "The preview renders the attribute block `{width=\"10\" height=\"25\"}` as visible text beneath the image placeholder (\"Image not found: test.png\")."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Creating a new Markdown file opens/focuses the file in a different pane (left editor vs lower-right pane)",
+            "steps_to_reproduce": [
+              "Open the app with split view enabled (multiple panes visible).",
+              "Use File → New file… (or equivalent).",
+              "Choose “Markdown”.",
+              "Click “Save” in the file dialog to create the new document."
+            ],
+            "expected_behaviors": [
+              "The newly created blank Markdown document becomes the active document in the main editor pane (consistent behavior; matches prior build).",
+              "Focus/active tab should switch to the new file in a predictable pane."
+            ],
+            "actual_behaviors": [
+              "Before change: the new file becomes the active tab in the left editor and shows as a blank document (0 words / 0 characters).",
+              "After change: the left editor stays on “Welcome to Zettlr!” content, while the new blank file opens as a tab in the lower-right pane instead (showing 0 words / 0 characters there)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

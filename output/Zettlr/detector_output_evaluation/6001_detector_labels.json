@@ -1,0 +1,158 @@
+{
+  "bug_id": 6001,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Unexpected glyph/marker appears in editor gutter near line 1 (rendering artifact)",
+            "steps_to_reproduce": [
+              "Open the “Welcome to Zettlr!” document (or any document showing the YAML frontmatter section).",
+              "Look at the left gutter/line-number area near the first line in the editor."
+            ],
+            "expected_behaviors": [
+              "The gutter should show only valid line numbers and intended markers (no stray characters)."
+            ],
+            "actual_behaviors": [
+              "A new/changed small character/marker (looks like an extra glyph under/near the line number) appears in the gutter compared to before, indicating an unintended rendering change."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Document word/character counts change after pilcrow cleanup (likely counting visual pilcrow/whitespace markers as content)",
+            "steps_to_reproduce": [
+              "Open Zettlr and enable Editor setting to show whitespace/line endings (pilcrows).",
+              "Open a blank Markdown document.",
+              "Paste the provided long mixed-content text block (regular lines + fenced code block + regular lines).",
+              "Observe the word count/character count shown in the UI (top-right stats and/or status bar)."
+            ],
+            "expected_behaviors": [
+              "Word/character counts should reflect the actual document text only and remain consistent between builds for the same pasted content.",
+              "Visual whitespace/line-ending markers (e.g., pilcrow ¶) should not be counted as document characters/words."
+            ],
+            "actual_behaviors": [
+              "After the change, the displayed statistics differ from the before-build for the same step/content (e.g., word count and character count are higher in the after screenshot: ~175 words / 958 characters vs ~168 words / 920 characters in before)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Preview pane heading marker rendering differs (left-edge artifact/shift on green heading indicator)",
+            "steps_to_reproduce": [
+              "Open the Split View tutorial content with two preview panes visible (as shown).",
+              "Look at the heading marker (green #) next to the “Split View” heading in the top-right pane and the “Helpful Links” heading in the bottom-right pane.",
+              "Compare before-change vs after-change builds."
+            ],
+            "expected_behaviors": [
+              "Heading markers in the preview should render identically between builds (no added artifacts or shifts) unless explicitly part of the intended change."
+            ],
+            "actual_behaviors": [
+              "After change: the left edge of the green heading indicator shows a small rendering difference (appears shifted/with an extra colored edge) in both preview panes compared to before change."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "After creating a new document, typing/Enter can edit the previously open document instead of the new file (focus/active document incorrect)",
+            "steps_to_reproduce": [
+              "Create a new blank Markdown document (Document1) via File → New file… and save it.",
+              "Click into the editor area and type: See [project plan](https://example.invalid/plan)",
+              "Press Enter.",
+              "Observe which document content actually changes (Split View tutorial file vs Document1)."
+            ],
+            "expected_behaviors": [
+              "After creating and selecting Document1, keyboard input (typing and Enter) should modify Document1 only.",
+              "Previously open/tutorial documents (e.g., “Split View”) should not be modified unless explicitly activated. ამ"
+            ],
+            "actual_behaviors": [
+              "Before change: the typed text and subsequent Enter/newline appear inside the existing “Split View” content (Split View becomes modified).",
+              "After change: the typed text appears in Document1 (Document1 becomes modified)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "Drag-selecting text across lines fails (selection collapses to caret; shows “0 selected”) when whitespace markers are enabled",
+            "steps_to_reproduce": [
+              "Enable whitespace/line-ending visualization (Highlight whitespace / Show whitespace).",
+              "In a Markdown document, type two lines of text (as in the scenario) and press Enter after each line.",
+              "Click at the beginning of the first line.",
+              "Click-drag to the end of the second line to select both lines."
+            ],
+            "expected_behaviors": [
+              "The dragged region should become highlighted and the UI should indicate a non-zero selection (i.e., the text is selected).",
+              "Whitespace/line-ending markers (pilcrows) should not prevent or cancel selection."
+            ],
+            "actual_behaviors": [
+              "After change, the selection does not appear/highlight, and the selection indicator shows “0 selected” even after performing the drag selection."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "GUI element location or interaction error (non-deterministic behavior)"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

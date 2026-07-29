@@ -1,0 +1,73 @@
+{
+  "bug_id": 1822453,
+  "ground_truth_bug_ids": [
+    1823496,
+    1852092
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "URL bar zoom indicator pill (e.g., “110%”) missing after zooming page",
+            "steps_to_reproduce": [
+              "Open any normal webpage (e.g., support.mozilla.org article).",
+              "Press Ctrl and + once to zoom in (to ~110%)."
+            ],
+            "expected_behaviors": [
+              "When the page zoom is not 100%, Firefox should show the zoom indicator pill (e.g., “110%”) in/near the address bar so users can see and reset zoom."
+            ],
+            "actual_behaviors": [
+              "After zooming in, the zoom indicator pill is not shown in the address bar area (it appears in the before screenshot but is absent in the after screenshot)."
+            ]
+          },
+          "is_duplicate": null
+        },
+        {
+          "bug_report": {
+            "summary": "Ctrl++ zoom-in does not advance to the next zoom level (stays at 110% instead of 120%)",
+            "steps_to_reproduce": [
+              "Open a normal webpage (e.g., support.mozilla.org).",
+              "Press Ctrl and + once (zoom becomes ~110%).",
+              "Press Ctrl and + again (second zoom-in step)."
+            ],
+            "expected_behaviors": [
+              "Zoom percentage indicator should advance from 110% to 120% on the second Ctrl++ press.",
+              "Page content should scale accordingly."
+            ],
+            "actual_behaviors": [
+              "Zoom indicator remains at 110% after the second Ctrl++ press (before-change shows 120% for the same step)."
+            ]
+          },
+          "is_duplicate": null
+        },
+        {
+          "bug_report": {
+            "summary": "Notifications “Settings – Notification Permissions” dialog: permissions list area collapses/disappears at increased zoom",
+            "steps_to_reproduce": [
+              "Open Firefox with a fresh profile.",
+              "Go to about:preferences#privacy.",
+              "Increase zoom (e.g., Ctrl++ three times to ~130%).",
+              "In Permissions, open Notifications → “Settings…”. (Scroll if needed)"
+            ],
+            "expected_behaviors": [
+              "Dialog should show the permissions list area (even if empty) with a visible list region that uses available space appropriately.",
+              "Dialog controls (Remove Website/Remove All Websites, checkbox text, footer buttons) should not compress the list away."
+            ],
+            "actual_behaviors": [
+              "The main permissions list region is effectively missing/collapsed: only the column headers are visible and the action buttons/checkbox area move up, leaving no visible list box area to view/manage entries."
+            ]
+          },
+          "is_duplicate": false
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

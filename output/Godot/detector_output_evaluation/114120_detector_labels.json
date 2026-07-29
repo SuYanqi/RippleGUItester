@@ -1,0 +1,56 @@
+{
+  "bug_id": 114120,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "FileDialog navigation drifts from build/exports back to project root during export-path selection",
+            "steps_to_reproduce": [
+              "Open Project → Export…",
+              "Add/select a Linux/X11 preset.",
+              "Click the Export Path field’s folder icon to open the chooser.",
+              "In the chooser, double-click the project’s “build” folder, then double-click “exports” (or otherwise navigate into build/exports)."
+            ],
+            "expected_behaviors": [
+              "Chooser path should end in …/build/exports after entering the exports folder.",
+              "Directories & Files list should reflect the exports folder contents (possibly empty)."
+            ],
+            "actual_behaviors": [
+              "Chooser path ends up at the project root (…/new-game-project) instead of …/build/exports.",
+              "Directories & Files list shows the ‘build’ folder (indicating the dialog is no longer inside exports)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

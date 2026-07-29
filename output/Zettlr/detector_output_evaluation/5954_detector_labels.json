@@ -1,0 +1,111 @@
+{
+  "bug_id": 5954,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "After saving a new Markdown file, the new document is not opened/focused in the main editor; focus returns to an existing note",
+            "steps_to_reproduce": [
+              "File → New file…",
+              "Choose Markdown and click Save (leave the filename as default/untitled).",
+              "Observe which document is active in the editor after the save dialog closes."
+            ],
+            "expected_behaviors": [
+              "The newly created Markdown document should become the active document for editing immediately after saving (cursor in the new empty document)."
+            ],
+            "actual_behaviors": [
+              "After saving, the editor shows the content of an existing document (“Welcome to Zettlr!”) instead of the new empty file; the status bar/word count reflects the existing document rather than a new 0-word document (diffs include #2, #10, #12, and many content-region changes)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Pandoc-style fenced code block header ```{.nix} appears to trigger syntax highlighting changes (likely Nix highlighting) when it should remain unhighlighted",
+            "steps_to_reproduce": [
+              "Create a new Markdown file.",
+              "Type a Pandoc-style fenced code block exactly:\n\n```{.nix}\n{ hello = \"world\"; }\n```"
+            ],
+            "expected_behaviors": [
+              "Editor does not crash.",
+              "Pandoc-style fence header `{.nix}` should not be treated as a language selector; code block should remain with 'No highlighting' (no Nix syntax highlighting applied)."
+            ],
+            "actual_behaviors": [
+              "Rendering/styling differs in the `{.nix}` fence header token and within the code body (token/string coloring changes), consistent with the code block being parsed/highlighted differently (potentially as Nix) despite using Pandoc-style `{.nix}`."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Word/character counters show 0 after typing content into the new document",
+            "steps_to_reproduce": [
+              "Create a new Markdown file via File → New file…, then Save.",
+              "Click into the editor area for that document and type the provided Python fenced code block.",
+              "Check the word/character counts in the UI (top-right word count and/or the pane status bar)."
+            ],
+            "expected_behaviors": [
+              "After typing, word/character counters should reflect the newly inserted content (non-zero character count at minimum)."
+            ],
+            "actual_behaviors": [
+              "In the after-change build, counters remain at “0 words” / “0 characters” despite the code block being visible in the document pane, indicating the counters are not updating or are calculating incorrectly."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

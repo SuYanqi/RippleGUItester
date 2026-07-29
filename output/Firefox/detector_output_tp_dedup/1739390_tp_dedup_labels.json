@@ -1,0 +1,131 @@
+{
+  "bug_id": 1739390,
+  "ground_truth_bug_ids": [
+    1746189,
+    1756387
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "about:logins still uses Lockwise-specific favicon/icon in the browser tab",
+            "steps_to_reproduce": [
+              "Open a new tab.",
+              "Navigate to about:logins.",
+              "Observe the tab favicon/icon (and/or the page icon) used for about:logins."
+            ],
+            "expected_behaviors": [
+              "about:logins should use standard Firefox branding assets for the favicon/icon (not a Lockwise-specific icon)."
+            ],
+            "actual_behaviors": [
+              "The about:logins tab still shows a Lockwise-style icon (orange lock/keyhole), indicating Lockwise-specific branding assets are still in use."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Support link label in empty-state help text is incorrectly lowercased (“passwords support”)",
+            "steps_to_reproduce": [
+              "Open about:logins with no saved logins (empty state).",
+              "Look at the help bullets under the empty-state guidance text."
+            ],
+            "expected_behaviors": [
+              "Support link text should be properly capitalized and consistent with other UI labels (e.g., “Passwords Support” or similar)."
+            ],
+            "actual_behaviors": [
+              "The link is shown as “passwords support” (lowercase), which looks like an unintended string/regionalization issue."
+            ]
+          },
+          "is_duplicate": null
+        },
+        {
+          "bug_report": {
+            "summary": "about:logins window/tab title still shows “Logins & Passwords — Firefox Nightly” instead of the new “Passwords” naming",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Navigate to about:logins."
+            ],
+            "expected_behaviors": [
+              "The page/window/tab title should reflect the rebranded name (“Passwords”), per intent to retitle affected UI areas."
+            ],
+            "actual_behaviors": [
+              "The title bar/tab continues to show “Logins & Passwords — Firefox Nightly”."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "about:logins still contains user-facing “logins” strings (e.g., “Search Logins”, “Looking for your saved logins?”) after rebrand",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Navigate to about:logins.",
+              "Observe the search box placeholder and the large help/empty-state heading text in the main content area."
+            ],
+            "expected_behaviors": [
+              "Branding/terminology should be updated to “Passwords” (and related strings updated) per change intent."
+            ],
+            "actual_behaviors": [
+              "Search placeholder reads “Search Logins”, and the main empty-state copy includes “Looking for your saved logins? Turn on sync or import them.”"
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "about:protections Passwords card icon/logo missing (blank placeholder) after removing Lockwise branding",
+            "steps_to_reproduce": [
+              "Open a new tab.",
+              "Navigate to about:protections.",
+              "Scroll down to the passwords section/card (previously the Lockwise card)."
+            ],
+            "expected_behaviors": [
+              "The password card shows a valid Firefox-branded icon (not Lockwise) with no broken/blank image area."
+            ],
+            "actual_behaviors": [
+              "The left-side icon area of the password card is blank/empty (the prior Lockwise icon is removed but no replacement icon is displayed)."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

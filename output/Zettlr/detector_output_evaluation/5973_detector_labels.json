@@ -1,0 +1,175 @@
+{
+  "bug_id": 5973,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Linked badge Markdown no longer renders as a clickable linked image; shows plain link text instead",
+            "steps_to_reproduce": [
+              "Create/open a Markdown document.",
+              "Ensure the pane is in the rendered/preview rendering mode (status bar shows \"Rendering: Preview\").",
+              "Paste each of the following on its own line:\n[![License](https://img.shields.io/github/license/zettlr/zettlr)](https://github.com/Zettlr/Zettlr/blob/master/LICENSE)\n[![Stars](https://img.shields.io/github/stars/zettlr/zettlr?style=social)](https://github.com/Zettlr/Zettlr)"
+            ],
+            "expected_behaviors": [
+              "Each line renders as a Shields.io badge image (License/Stars) and the badge is clickable, linking to the outer URL."
+            ],
+            "actual_behaviors": [
+              "Badges do not render as images; the pane shows textual link content (e.g., “![License]” and “![Stars]” as link text) instead of the badge images."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Markdown preview fails to render image with empty alt text; shows literal `![](url)` instead",
+            "steps_to_reproduce": [
+              "Create/open a Markdown document (e.g., “Image Alt Text Edge Cases”).",
+              "Open Markdown preview (or ensure the pane is in “Rendering: Preview” mode).",
+              "Insert on its own line: `![](https://placehold.co/120x40/png)`."
+            ],
+            "expected_behaviors": [
+              "The preview should parse the Markdown image syntax and render the image (even with empty alt text)."
+            ],
+            "actual_behaviors": [
+              "Instead of rendering an image, the preview shows the literal Markdown text `![](https://placehold.co/120x40/png)` (difference region bbox [894,530,1203,578])."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Quoted-title Markdown link parses/renders incorrectly and appears to merge with nested-parentheses URL in after-build",
+            "steps_to_reproduce": [
+              "Create/open a Markdown document.",
+              "Enter: [Sloppy](https://example.com/a path/with spaces)",
+              "On a new line enter: [Paren](https://example.com/a_(b_(c))_d)",
+              "On a new line enter: [Titled](https://example.com \"Example Domain\")",
+              "View the rendered/live preview (Rendering: Preview) in the editor pane."
+            ],
+            "expected_behaviors": [
+              "The third link should render as a valid link with text “Titled”, URL https://example.com, and title “Example Domain”.",
+              "The earlier “Paren” link should remain intact and not affect subsequent link parsing."
+            ],
+            "actual_behaviors": [
+              "After the change, the rendered/inline preview shows malformed output: “Titled” is not rendered as a proper Markdown link and appears to use/merge with the nested-parentheses URL content, indicating broken parsing for quoted-title links and interference between adjacent links."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Editor word/character counts differ between builds for the same unchanged document",
+            "steps_to_reproduce": [
+              "Launch Zettlr and reach the main interface.",
+              "Dismiss the “Update available” dialog (click “Not now”).",
+              "Open/observe the built-in “Welcome to Zettlr!” document (as shown) and look at the bottom status bar word and character counts."
+            ],
+            "expected_behaviors": [
+              "For the same document content, the word and character counts in the status bar should be consistent and not change across builds/runs without edits."
+            ],
+            "actual_behaviors": [
+              "The status bar shows different counts between before/after: ~1,573 words & 8,897 characters (before) vs ~1,596 words & 9,023 characters (after) with no visible content changes."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        },
+        {
+          "bug_report": {
+            "summary": "Reference-style link label ([rfc9110]) becomes invisible/blank in the editor after interacting with the link (only “Reference link” remains visible)",
+            "steps_to_reproduce": [
+              "Create/open a Markdown file.",
+              "Enter exactly:\n[Reference link][rfc9110]\n\n[rfc9110]: https://www.rfc-editor.org/rfc/rfc9110 \"HTTP Semantics\"",
+              "Ensure the document is visible in the editor (lower-right pane in split view as shown).",
+              "Interact with the link (hover/click) and then click elsewhere to dismiss any tooltip/popover."
+            ],
+            "expected_behaviors": [
+              "The editor should continue to display the exact source markup that was typed, including the full reference-style link text and label: [Reference link][rfc9110]."
+            ],
+            "actual_behaviors": [
+              "In the after-build screenshot, the editor shows only “Reference link”, and the reference label portion ([rfc9110]) is not shown; instead an empty/blank box appears where the label text should be."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Expected GUI difference due to intended code change"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Internal link autocomplete inserts redundant alias format `[[Note|Note]]` instead of simple `[[Note]]`",
+            "steps_to_reproduce": [
+              "Open a Markdown note (e.g., \"Source Note - Nested Link\") in the editor",
+              "Type `[[` to open the internal link suggestion dropdown",
+              "Click/select the suggestion for \"Target Note - Nested Link\""
+            ],
+            "expected_behaviors": [
+              "The editor inserts the internal link exactly as `[[Target Note - Nested Link]]` (no alias pipe when the display text equals the target)."
+            ],
+            "actual_behaviors": [
+              "The editor inserts a link with a redundant alias, e.g. `[[Target Note - Nested Link|Target Note - Nested Link]]`, adding a `|` section even though the alias text matches the target."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Uncertain whether true positive or false positive"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

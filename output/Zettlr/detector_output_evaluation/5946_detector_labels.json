@@ -1,0 +1,139 @@
+{
+  "bug_id": 5946,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Export popover remains stuck in busy state (\"Exporting…\" button disabled) even after waiting for export completion",
+            "steps_to_reproduce": [
+              "Open a markdown document.",
+              "Open Export popover (Ctrl+E).",
+              "Select an export profile (e.g., HTML).",
+              "(Optional) Enable “Open after export”.",
+              "Click “Export”.",
+              "Wait for the export to finish."
+            ],
+            "expected_behaviors": [
+              "Once export finishes, the Export button should re-enable and revert to its normal label (e.g., “Export”), and/or the popover should close.",
+              "User should be able to proceed with other actions (e.g., open Preferences) without the UI appearing perpetually busy."
+            ],
+            "actual_behaviors": [
+              "Export popover remains visible with the Export button disabled and labeled “Exporting…” after waiting, suggesting export state is not cleared."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "“Update available” modal appears unexpectedly while File menu is open, interrupting workflow",
+            "steps_to_reproduce": [
+              "Launch the app and reach the main window",
+              "Open the File menu (e.g., to create a new file)"
+            ],
+            "expected_behaviors": [
+              "Opening the File menu should not trigger unrelated interrupting modals",
+              "If an update notification appears, it should not appear abruptly on top of an active menu interaction (or should close the menu cleanly first)"
+            ],
+            "actual_behaviors": [
+              "An “Update available” modal pops up in the center of the window while the File menu dropdown remains open behind it, obscuring the UI and interrupting the current action"
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Unexpected visual artifact/handle change on the horizontal splitter between right-side panes",
+            "steps_to_reproduce": [
+              "Launch Zettlr and reach the main interface (skip the setup wizard if shown).",
+              "Observe the horizontal divider/splitter between the upper-right and lower-right panes (around the middle-right of the window)."
+            ],
+            "expected_behaviors": [
+              "The horizontal splitter/divider between the right-side panes should render consistently (no extra/missing handle/artifact) and match the previous build's appearance."
+            ],
+            "actual_behaviors": [
+              "A small vertical UI element/artifact on the right-side horizontal splitter appears changed (added/removed/altered) compared to before (difference region approx. bbox [895, 538, 905, 584])."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Split-view tab/pane migration: activating “CustomCmd” causes the document tab to move to a different pane/tab bar",
+            "steps_to_reproduce": [
+              "Open Zettlr in a layout with multiple panes/tab groups (split view).",
+              "Have a document (e.g., “CustomCmd”) open in the lower/right tab group along with other tabs (e.g., “Helpful Links”).",
+              "Click the “CustomCmd” tab (in that lower/right tab group) to activate it."
+            ],
+            "expected_behaviors": [
+              "Clicking a tab should activate that document within the same pane/tab group where the tab is located.",
+              "The tab should remain in its original tab bar/pane."
+            ],
+            "actual_behaviors": [
+              "After the change, the “CustomCmd” tab disappears from the lower/right tab group and appears in the upper/left editor tab bar (pane changes), effectively moving the document between panes."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

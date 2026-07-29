@@ -1,0 +1,90 @@
+{
+  "bug_id": 5977,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Word/character counters inconsistent between before/after for identical Markdown content (includes footnote refs/defs)",
+            "steps_to_reproduce": [
+              "Create a new blank Markdown document.",
+              "Paste the provided Markdown containing stacked footnote definitions and a trailing body paragraph.",
+              "Observe the word count/character count in the UI (top-right counter and/or bottom status bar for the active pane)."
+            ],
+            "expected_behaviors": [
+              "For identical document content, word and character counts should match between builds."
+            ],
+            "actual_behaviors": [
+              "Counts differ between before vs after (e.g., top-right shows 18 words vs 20 words; bottom status shows 29 words / 187 characters vs 31 words / 204 characters), indicating inconsistent stats calculation and/or extra hidden characters being introduced."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Invalid footnote-like label with spaces does not fall back to normal link; link destination gets swallowed in preview",
+            "steps_to_reproduce": [
+              "Create a new blank Markdown document.",
+              "Enter: `This should be a link: [^bad id](https://www.iana.org/domains/reserved)`",
+              "Switch to rendered/preview view."
+            ],
+            "expected_behaviors": [
+              "The text renders as a normal hyperlink using the label `^bad id` (or `[^bad id]`) pointing to `https://www.iana.org/domains/reserved`.",
+              "The link destination should not disappear from rendering/AST; the preview should reflect a valid clickable link."
+            ],
+            "actual_behaviors": [
+              "Preview shows only `This should be a link: ^bad id` and the URL/destination is not rendered/associated with the link (destination appears to be swallowed).",
+              "Rendered label formatting differs (brackets removed) and the output is not a normal link to the URL."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Valid footnote reference followed by (url) is rendered incorrectly in preview: URL disappears and reference formatting/line break changes",
+            "steps_to_reproduce": [
+              "Create/open a Markdown document in Zettlr.",
+              "Enter: `This must stay a footnote reference (not a link): [^valid_ref](https://www.wikipedia.org/)` then a blank line, then `[^valid_ref]: This is the footnote body.`",
+              "Switch to rendered/preview view (or view the preview pane)."
+            ],
+            "expected_behaviors": [
+              "`[^valid_ref]` is treated as a footnote reference (not parsed as a normal link label).",
+              "The `(https://www.wikipedia.org/)` portion remains visible as literal text (it may be auto-linked as a URL, but must not be consumed as a link destination for `[^valid_ref]`).",
+              "The preview keeps the inline structure (no unexpected line break splitting the reference from the preceding text)."
+            ],
+            "actual_behaviors": [
+              "In preview, the `(https://www.wikipedia.org/)` text is missing entirely, and the reference is rendered as `^valid_ref` with altered formatting/line break (appearing on its own line).",
+              "Word/character counters also drop accordingly (consistent with missing URL text)."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}
