@@ -123,9 +123,9 @@ python -m scripts.execution.app --repo Zettlr
 python -m scripts.execution.app --repo Zettlr --pr 5976 --max-scenarios 1
 ```
 
-The `--max-scenarios` flag limits how many test scenarios are executed per PR. For example, `--max-scenarios 1` runs only the first scenario (folder `0`) and then stops cleanly — no manual interruption needed. 
+The `--max-scenarios` flag limits how many test scenarios are executed per PR. For example, `--max-scenarios 1` runs only the first scenario (folder `0`). 
 
-⚠️ **Quick Validation Tip:** This process is expensive and time-consuming. Averages are **$5.996 and 54.8 minutes per PR**. Each PR generates and executes multiple test scenarios stored in numbered folders (0, 1, 2, ...). For a quick validation, use `--max-scenarios 1` to run only the first scenario and stop cleanly.
+⚠️ **Quick Validation Tip:** This process is expensive and time-consuming. Averages are **$5.996 and 54.8 minutes per PR**. Each PR generates and executes multiple test scenarios stored in numbered folders (0, 1, 2, ...). For a quick validation, use `--max-scenarios 1` to run only the first scenario.
 
 ### 3. Post-Process Bug Reports (Optional)
 
@@ -151,7 +151,7 @@ output/{Repository}/output/{PR_ID}/
     ├── generator.json        # Test scenarios (initial)
     ├── path_enhancer.json    # Test scenarios with path enhancement
     ├── data_enhancer.json    # Test scenarios with path + data enhancement
-    ├── post_processor.json   # ✨ Bug filtering (optional)
+    ├── post_processor.json   # Bug filtering (optional)
     └── {scenario_index}/     # Per-scenario results (0, 1, 2, ...)
         ├── 📄 OUTPUT.pdf     # ⭐ Visual report (start here!)
         ├── replayer.pdf      # Execution trace

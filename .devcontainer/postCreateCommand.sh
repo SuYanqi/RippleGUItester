@@ -26,12 +26,12 @@ echo "📥 Downloading datasets..."
 [ -d "output" ] && rm -rf output && echo "   🗑️  Removed stale output/"
 
 wget -q https://github.com/SuYanqi/RippleGUItester/releases/download/data/data.zip
-unzip -qo data.zip
+unzip -qo data.zip  -x "__MACOSX/*"
 rm -f data.zip
 echo "   ✅ data/ downloaded and extracted"
 
 wget -q https://github.com/SuYanqi/RippleGUItester/releases/download/data/output.zip
-unzip -qo output.zip
+unzip -qo output.zip  -x "__MACOSX/*"
 rm -f output.zip
 echo "   ✅ output/ downloaded and extracted"
 
