@@ -1,0 +1,58 @@
+{
+  "bug_id": 1946718,
+  "ground_truth_bug_ids": [
+    1974508,
+    1978281,
+    1979592
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Passwords entry details show inconsistent IDN formatting (Unicode title/list vs punycode Website address)",
+            "steps_to_reproduce": [
+              "Open Sidebar → Passwords (about:logins#).",
+              "Add a new password with Website/Origin `https://bücher.de` and save it.",
+              "Open the saved entry details view."
+            ],
+            "expected_behaviors": [
+              "The domain/origin should be displayed consistently across the entry header, list item, and Website address field (either consistently Unicode or consistently punycode, per product decision)."
+            ],
+            "actual_behaviors": [
+              "After change: entry header and left-side list show `bücher.de`, but the Website address field displays `https://xn--bcher-kva.de` (punycode), creating inconsistent/possibly confusing presentation."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

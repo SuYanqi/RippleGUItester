@@ -1,0 +1,186 @@
+{
+  "bug_id": 6046,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "YAML/frontmatter token styling/decoration changed unexpectedly (non-heading, non-code area)",
+            "steps_to_reproduce": [
+              "Create or open a Markdown file that contains YAML frontmatter (e.g., `---`, `title: ...`, `keywords:` with list items).",
+              "View the file in the Markdown editor (as in the provided screenshots)."
+            ],
+            "expected_behaviors": [
+              "Frontmatter styling (token colors/decoration) should remain consistent with the pre-change behavior, since the refactor targets heading classes and code syntax highlighting only.",
+              "No new/missing/shifted decorations should appear within YAML/frontmatter unless explicitly intended."
+            ],
+            "actual_behaviors": [
+              "Multiple token-level decoration differences appear in the YAML/frontmatter region (around `title`, `keywords`, and list items), indicating changes in syntax highlighting/decoration that are outside the stated heading/code-highlighting intent."
+            ]
+          },
+          "is_duplicate": null
+        },
+        {
+          "bug_report": {
+            "summary": "Bottom status/count area shows unexpected text rendering differences",
+            "steps_to_reproduce": [
+              "Open a Markdown document in split view so the bottom status/count area is visible.",
+              "Observe the bottom bar near the word/character counts and rendering status."
+            ],
+            "expected_behaviors": [
+              "Status/count text should render identically before vs. after the refactor (no visual change), since the change intent does not mention status bar rendering."
+            ],
+            "actual_behaviors": [
+              "Small visual differences are detected in the bottom status/count region (word/character count area), suggesting unintended rendering/layout changes."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Rendered preview inline-code/keycap styling changed (e.g., “Command” and “Control” badges)",
+            "steps_to_reproduce": [
+              "Open a document in split view where the rendered preview includes inline-code/keycap-like elements (e.g., the “Command” and “Control” badges shown).",
+              "Compare the appearance of these inline-code elements before vs after the change."
+            ],
+            "expected_behaviors": [
+              "Preview inline-code rendering should remain unchanged by an editor-side CodeMirror decoration refactor."
+            ],
+            "actual_behaviors": [
+              "Inline-code/keycap elements in the preview render with different styling in the after state (detected at the “Command” and “Control” badges), suggesting unintended CSS/styling changes affecting the preview."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Fenced JSON code block syntax highlighting appearance changed (token colors/decoration differ)",
+            "steps_to_reproduce": [
+              "Create/open a Markdown file.",
+              "Insert a fenced JSON code block, e.g.:",
+              "```json",
+              "{",
+              "  \"marker\": \"UNIQUE_TOKEN_TOP_4F2E\",",
+              "  \"value\": 123",
+              "}",
+              "```"
+            ],
+            "expected_behaviors": [
+              "JSON code block syntax highlighting should look the same as before the refactor (same coloring/decoration for punctuation, keys, strings, and numbers)."
+            ],
+            "actual_behaviors": [
+              "Token-level highlighting within the JSON code block differs after the change (multiple diffs across the language tag and JSON tokens; Parsed_Info no. 9–16)."
+            ]
+          },
+          "is_duplicate": null
+        },
+        {
+          "bug_report": {
+            "summary": "Fenced Bash code block syntax highlighting appearance changed (token colors/decoration differ)",
+            "steps_to_reproduce": [
+              "Create/open a Markdown file.",
+              "Insert a fenced Bash code block, e.g.:",
+              "```bash",
+              "# marker below must be findable",
+              "export TOKEN=\"UNIQUE_TOKEN_BOTTOM_9C7A\"",
+              "echo \"$TOKEN\"",
+              "```"
+            ],
+            "expected_behaviors": [
+              "Bash code block syntax highlighting should match the pre-change appearance (same token colors/decoration for comments, keywords/commands, strings, variables, and punctuation)."
+            ],
+            "actual_behaviors": [
+              "Token-level highlighting within the Bash code block differs after the change (multiple diffs across the code-fence area and code tokens; see Parsed_Info no. 9–18, 20–27)."
+            ]
+          },
+          "is_duplicate": null
+        },
+        {
+          "bug_report": {
+            "summary": "Unexpected floating formatting toolbar appears after pressing Enter in Find-in-file to jump to match",
+            "steps_to_reproduce": [
+              "Open a Markdown file with content (including a fenced code block).",
+              "Press Ctrl+F to open Find-in-file.",
+              "Enter a search term that has a match in the document (e.g., UNIQUE_TOKEN_BOTTOM_9C7A).",
+              "Press Enter to jump to the match."
+            ],
+            "expected_behaviors": [
+              "The editor should jump to the match and highlight it without showing any additional floating formatting/quick-action toolbar overlays."
+            ],
+            "actual_behaviors": [
+              "A floating formatting/quick-action toolbar (with icons such as bold/italic etc.) appears over the bottom-right of the editor pane after the jump (visible only in the after-change screenshot; diff region aligns with Parsed_Info no. 18–19)."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Preview-rendered code/frontmatter snippet styling differs (token/background placement changes)",
+            "steps_to_reproduce": [
+              "Open the “Welcome to Zettlr!” document in Preview (center pane).",
+              "Scroll to/locate the small code/frontmatter-like snippet near the top of the document (the multi-line block with colored tokens).",
+              "Compare token/background placement and styling between builds."
+            ],
+            "expected_behaviors": [
+              "Preview code block rendering/styling should not change as a result of moving editor (CodeMirror) syntax highlighting/decorations to viewport-only processing."
+            ],
+            "actual_behaviors": [
+              "The snippet’s rendered token/background/decoration appearance differs between builds (diff regions no. 2 through no. 10)."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Undo (Ctrl+Z) has no visible effect on Markdown content in the editor pane (table remains unchanged)",
+            "steps_to_reproduce": [
+              "Create a new Markdown file.",
+              "Enable Preview mode / split view as in the scenario.",
+              "Type a Markdown table (e.g., `| Col1 | Col2 |` + separator + data row).",
+              "Press Ctrl+Z (Undo) while focus is in the editor pane."
+            ],
+            "expected_behaviors": [
+              "The most recent text entry should be undone (table content should visibly change/reduce with each Ctrl+Z, eventually reaching an empty document after repeated Undo)."
+            ],
+            "actual_behaviors": [
+              "After Ctrl+Z, the table content remains visually unchanged (no visible removal of table rows/text)."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"https://hg.mozilla.org/mozilla-central/rev/0030e1c01a2f651cb086e573814f67729598eec9": {"commit_message": "Bug 1433530 - revealing truncated text of shortcut tiles on hover and focus states. r=home-newtab-reviewers,nbarrett\n\nDifferential Revision: https://phabricator.services.mozilla.com/D228267", "push_date": "2024-12-06T09:28:31Z", "ranked_scenarios": []}}

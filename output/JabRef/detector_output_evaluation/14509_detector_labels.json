@@ -1,0 +1,178 @@
+{
+  "bug_id": 14509,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Unintended capitalization change in SSL section title (“SSL Configuration” -> “SSL configuration”)",
+            "steps_to_reproduce": [
+              "Open JabRef Preferences",
+              "Go to Preferences → Network",
+              "Observe the SSL section header text"
+            ],
+            "expected_behaviors": [
+              "SSL section header text should remain unchanged unless explicitly part of the change (e.g., should still read “SSL Configuration”)."
+            ],
+            "actual_behaviors": [
+              "SSL section header now reads “SSL configuration” (lowercase “c”), differing from the prior UI."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": false,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Expected GUI difference due to intended code change"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "“Browse for certificate…” button label missing/blank in SSL configuration area",
+            "steps_to_reproduce": [
+              "Open Preferences",
+              "Go to Network tab",
+              "Scroll to the SSL configuration section (bottom area of the tab)",
+              "Look at the button used to browse/select a certificate"
+            ],
+            "expected_behaviors": [
+              "The certificate selection button should display its label (e.g., “Browse for certificate…”)."
+            ],
+            "actual_behaviors": [
+              "The button is rendered as an empty/blank button without the expected text label."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Expected GUI difference due to intended code change"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "PAT reveal (eye) control does not reveal PAT while pressed/held",
+            "steps_to_reproduce": [
+              "Open Preferences → Network",
+              "Enter any value into Git PAT field",
+              "Press and hold the eye/reveal icon inside the PAT field"
+            ],
+            "expected_behaviors": [
+              "While the reveal icon is pressed/held, the PAT should be shown in clear text (temporarily unmasked)."
+            ],
+            "actual_behaviors": [
+              "PAT remains masked (shown as bullet dots) even while the reveal icon is being held."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "File → Git submenu: 'Commit' becomes disabled for a new/unsaved library (was enabled before)",
+            "steps_to_reproduce": [
+              "Create a new empty library (do not save to disk).",
+              "Open File → Git submenu."
+            ],
+            "expected_behaviors": [
+              "'Commit' menu item should have the same enabled/disabled state as before the code change in this scenario."
+            ],
+            "actual_behaviors": [
+              "'Commit' is shown disabled/greyed out in the after-change build, while it is enabled in the before-change build."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Expected GUI difference due to intended code change"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "File menu left icon/indicator column renders differently for several items (visual artifacts/misalignment)",
+            "steps_to_reproduce": [
+              "Start JabRef and open the File menu on the Welcome screen.",
+              "Inspect the leftmost icon/indicator gutter for menu items around “Save library”, “Save library as…”, and “Import”."
+            ],
+            "expected_behaviors": [
+              "Menu items should have consistent icon/indicator spacing and rendering (no unexpected extra marks/strips)."
+            ],
+            "actual_behaviors": [
+              "Several menu items show changed rendering in the left gutter (small vertical marks/strips appear/shift compared to before), suggesting unintended icon/indicator misalignment or artifacting."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Unstable GUI layout/rendering"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "Network preferences: SSL configuration table collapses and 'No content in table' placeholder is rendered outside the table body",
+            "steps_to_reproduce": [
+              "Open JabRef.",
+              "Go to File → Preferences → Network.",
+              "Scroll to the SSL configuration section (with no certificates configured)."
+            ],
+            "expected_behaviors": [
+              "SSL configuration shows a normal table with a visible body area.",
+              "If the table is empty, 'No content in table' is shown within the table body area (not below/outside it)."
+            ],
+            "actual_behaviors": [
+              "The SSL table body appears collapsed (only header/very small body visible).",
+              "The 'No content in table' text is rendered below/outside the table area."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Expected GUI difference due to intended code change"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

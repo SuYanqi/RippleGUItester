@@ -1,0 +1,78 @@
+{
+  "bug_id": 5947,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Document statistics (words/characters) change drastically after fix when Pandoc attribute block is present",
+            "steps_to_reproduce": [
+              "Create/open a Markdown document.",
+              "Type a heading with a Pandoc attribute block containing quoted values, e.g. `# Title {style=\"font-family: 'Noto Serif'; font-size: 12px; letter-spacing: 0.05em;\"}`.",
+              "Observe the word/character counters in the UI (top-right indicator and/or editor status bar)."
+            ],
+            "expected_behaviors": [
+              "Word/character counts should remain consistent with the visible source text (or at minimum should not change unexpectedly compared to previous behavior for the same typed content)."
+            ],
+            "actual_behaviors": [
+              "For the same visible content, the counters differ significantly between builds: before-change shows higher counts (e.g., 18 words / 115 characters) while after-change shows much lower counts (e.g., 7 words / 38 characters), suggesting the attribute block is being excluded from stats after the change."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Pandoc image attributes render as stray literal text in preview (e.g., {width=\"10\" height=\"25\"})",
+            "steps_to_reproduce": [
+              "Create/open a Markdown document.",
+              "Type the following on its own line: ![Pixel](test.png){width=\"10\" height=\"25\"}",
+              "View the rendered preview."
+            ],
+            "expected_behaviors": [
+              "The attribute block should be parsed and applied to the image (or at minimum not rendered as visible text).",
+              "No trailing `{width=\"10\" height=\"25\"}` text should appear in the preview."
+            ],
+            "actual_behaviors": [
+              "The preview renders the attribute block `{width=\"10\" height=\"25\"}` as visible text beneath the image placeholder (\"Image not found: test.png\")."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

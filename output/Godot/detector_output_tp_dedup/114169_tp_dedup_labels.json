@@ -1,0 +1,54 @@
+{
+  "bug_id": 114169,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Bottom dock tab strip (Output/Debugger/Audio/Animation/Shader Editor) renders differently after change",
+            "steps_to_reproduce": [
+              "Open the project in the Godot editor.",
+              "Open/attach a script and type content so the Script editor is focused (as in the scenario).",
+              "Observe the bottom dock tab strip area (Output/Debugger/Audio/Animation/Shader Editor)."
+            ],
+            "expected_behaviors": [
+              "Bottom dock tab strip styling (borders/highlight/padding) is consistent and unchanged between builds for the same editor state."
+            ],
+            "actual_behaviors": [
+              "Bottom dock tab strip styling differs (border/highlight rendering in the tab strip area changes) between before/after for the same step/state."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "bug_id": 14489,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "HTTP server endpoint /libraries/demo returns 500 Request failed instead of 200 OK after change",
+            "steps_to_reproduce": [
+              "Start JabRef GUI.",
+              "Open Options → Preferences → HTTP Server.",
+              "Enable HTTP server with default host/port and click Apply/OK to start it.",
+              "In a terminal run: curl -sS --max-time 5 -D - \"http://127.0.0.1:23119/libraries/demo\" -o /tmp/demo.json (adjust host/port to match UI)."
+            ],
+            "expected_behaviors": [
+              "Response status is HTTP/1.1 200 OK.",
+              "Response Content-Type is application/json (and request writes valid JSON to /tmp/demo.json).",
+              "(As previously) CORS headers are present (e.g., Access-Control-Allow-Origin: *)."
+            ],
+            "actual_behaviors": [
+              "Response status is HTTP/1.1 500 Request failed.",
+              "Response Content-Type is text/html; charset=ISO-8859-1 and Connection: close.",
+              "CORS headers seen before are missing, and the request does not return the expected JSON payload."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "CLI run reports BUILD SUCCESSFUL even though HTTP server startup fails due to occupied port (stack trace shown)",
+            "steps_to_reproduce": [
+              "In Terminal A, start a process that occupies port 23119 (e.g., `python3 -m http.server 23119 --bind 127.0.0.1`).",
+              "In Terminal B, run: `./gradlew :jabsrv-cli:run --no-daemon`.",
+              "Wait for the command to finish."
+            ],
+            "expected_behaviors": [
+              "If the JabRef HTTP server cannot start because the port is already in use, the CLI run should fail (non-zero exit) and Gradle should indicate failure (e.g., BUILD FAILED / task failed), while still showing a useful error/stack trace."
+            ],
+            "actual_behaviors": [
+              "A stack trace indicating server startup failure is printed, but Gradle ends with \"BUILD SUCCESSFUL\" and returns to the shell prompt, implying a successful exit despite the failure."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

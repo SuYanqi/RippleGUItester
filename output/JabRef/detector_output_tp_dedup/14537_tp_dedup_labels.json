@@ -1,0 +1,102 @@
+{
+  "bug_id": 14537,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Restart-required dialog message is mixed Chinese/English after switching to zh_CN",
+            "steps_to_reproduce": [
+              "Launch JabRef",
+              "Open File → Preferences",
+              "Change language to 中文（简体） (zh_CN) and save/apply",
+              "Observe the restart-required confirmation dialog"
+            ],
+            "expected_behaviors": [
+              "The confirmation text is fully localized in Simplified Chinese (including the language name, e.g., “中文（简体）”), with natural Chinese wording/punctuation."
+            ],
+            "actual_behaviors": [
+              "The first line reads in Chinese but embeds the English language name “Chinese (Simplified)” (mixed-language sentence), suggesting incomplete localization."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Add-by-identifier dialog still shows multiple English strings in zh_CN UI (helper text, tabs, and validation message not localized)",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Switch application language to 中文（简体） (zh_CN) and restart if required.",
+              "Create a new empty library.",
+              "Open add-by-identifier (e.g., Library → Enter identifier…).",
+              "Click into the identifier input field (even without entering a value)."
+            ],
+            "expected_behaviors": [
+              "The add-by-identifier dialog should be fully localized in Simplified Chinese (no English fallback strings for dialog tabs/labels/help text/validation messages)."
+            ],
+            "actual_behaviors": [
+              "Dialog remains mixed-language: some items are Chinese (e.g., “输入标识符”, “标识符”, “标识符类型”), but several strings are still English, including tabs (“Choose Entry Type”, “Interpret Citations”, “Specify Bib(La)TeX”), helper text (“You can also paste identifiers …”), option text (“Automatically determine identifier type”), and validation message (“You must provide an identifier.”)."
+            ]
+          },
+          "is_duplicate": null
+        },
+        {
+          "bug_report": {
+            "summary": "Lookup failure error dialog is not fully localized in zh_CN (title/message remain English)",
+            "steps_to_reproduce": [
+              "Launch JabRef.",
+              "Switch application language to 中文（简体） (zh_CN) and restart if required.",
+              "Create a new empty library.",
+              "Open add-by-identifier (Library → Enter identifier…).",
+              "Enter an invalid identifier such as `not-a-doi` and click 查找 (Lookup)."
+            ],
+            "expected_behaviors": [
+              "A Chinese error dialog/message is shown indicating lookup/validation failed.",
+              "All visible error dialog strings are localized in Chinese (no English fallback for these strings)."
+            ],
+            "actual_behaviors": [
+              "The error dialog title is English: “Invalid result returned”.",
+              "The error dialog body text is English: “An unknown error has occurred. This entry may need to be added manually.”",
+              "Only the dialog button is localized (“确定”), resulting in a mixed-language error dialog."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

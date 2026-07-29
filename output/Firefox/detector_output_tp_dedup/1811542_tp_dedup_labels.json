@@ -1,0 +1,92 @@
+{
+  "bug_id": 1811542,
+  "ground_truth_bug_ids": [
+    1920421
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Ctrl+Click on “View Shield Studies” no longer opens about:studies in a new tab (replaces/closes Settings tab)",
+            "steps_to_reproduce": [
+              "Open Firefox.",
+              "Navigate to about:preferences#privacy.",
+              "Scroll to the Studies / Shield Studies row.",
+              "Hold Ctrl and left-click the “View Shield Studies” link."
+            ],
+            "expected_behaviors": [
+              "A new tab opens.",
+              "The new tab’s URL is about:studies.",
+              "The original Settings (about:preferences#privacy) tab remains open."
+            ],
+            "actual_behaviors": [
+              "about:studies opens but the original Settings tab is not preserved (Settings tab disappears), indicating the link opened in the current tab or replaced the Settings tab instead of opening a new one."
+            ]
+          },
+          "is_duplicate": false
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "“Privacy Notice” link styling/focus rendering changed after conversion to html:a (appears visually inconsistent)",
+            "steps_to_reproduce": [
+              "Open Firefox Nightly.",
+              "Navigate to about:preferences#privacy.",
+              "Scroll to the “Firefox/Nightly Data Collection and Use” section.",
+              "Press Tab until the “Privacy Notice” link is focused."
+            ],
+            "expected_behaviors": [
+              "The “Privacy Notice” link text and focus indicator should render consistently with the pre-change UI (no extra underline/border artifacts, no misalignment)."
+            ],
+            "actual_behaviors": [
+              "The “Privacy Notice” link’s rendering differs from before (detected changes across the link text area and underline/focus region), suggesting altered underline/focus styling compared to the pre-change appearance."
+            ]
+          },
+          "is_duplicate": true
+        },
+        {
+          "bug_report": {
+            "summary": "Activating “Privacy Notice” from about:preferences#privacy no longer opens in a new tab; it replaces the Settings tab",
+            "steps_to_reproduce": [
+              "Open Firefox Nightly.",
+              "Navigate to about:preferences#privacy.",
+              "Scroll to the “Firefox/Nightly Data Collection and Use” section.",
+              "Focus the “Privacy Notice” link via keyboard (Tab).",
+              "Press Enter to activate the link."
+            ],
+            "expected_behaviors": [
+              "The “Privacy Notice” link should open the Mozilla privacy page in a new tab, keeping the Settings (about:preferences) tab open (matching prior behavior)."
+            ],
+            "actual_behaviors": [
+              "The Mozilla privacy page opens by navigating the current Settings tab away from about:preferences, and the original Settings tab is no longer present (only the privacy page tab remains)."
+            ]
+          },
+          "is_duplicate": true
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

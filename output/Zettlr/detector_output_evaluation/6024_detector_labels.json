@@ -1,0 +1,109 @@
+{
+  "bug_id": 6024,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Pilcrow/whitespace marker appears inside YAML frontmatter/code-like block when whitespace highlighting is enabled",
+            "steps_to_reproduce": [
+              "Open a Markdown file that contains a YAML frontmatter block (or other code-like block).",
+              "Open Preferences → Editor and enable “Highlight whitespace” (pilcrows/whitespace markers).",
+              "Return to the editor and look at the YAML/frontmatter block area."
+            ],
+            "expected_behaviors": [
+              "Whitespace line-ending markers (¶) should not be drawn for code-related content (including YAML frontmatter/code blocks), per change intent."
+            ],
+            "actual_behaviors": [
+              "A pilcrow/whitespace marker is rendered within the YAML/frontmatter (code-like) block area (visible change in the frontmatter region)."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Duplicate/thicker green heading indicator bar next to “# Helpful Links” in lower-right pane",
+            "steps_to_reproduce": [
+              "Launch Zettlr and open the same split-view layout shown (tutorial/workspace with the “Helpful Links” document visible in the lower-right pane).",
+              "Look at the heading line “# Helpful Links” in the lower-right pane."
+            ],
+            "expected_behaviors": [
+              "Heading decoration/indicator (green vertical bar next to the heading) renders as a single, consistent-width bar (as before the change)."
+            ],
+            "actual_behaviors": [
+              "The green vertical indicator next to “# Helpful Links” appears thicker/duplicated (looks like two adjacent green bars) compared to the before-change rendering."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Upper-right pane shows a stray/changed vertical bar (scrollbar/divider rendering artifact) after the change",
+            "steps_to_reproduce": [
+              "Open Zettlr and reach the main interface with the Split View layout visible (as in the screenshot).",
+              "Look at the upper-right pane near the right edge around the mid-height region (approx. x=895–905, y=538–584)."
+            ],
+            "expected_behaviors": [
+              "No unexpected vertical line/bar should appear in the content area; scrollbar/divider rendering should be consistent and stable."
+            ],
+            "actual_behaviors": [
+              "A narrow vertical bar/line region renders differently (appears/changes) in the upper-right pane near the right edge (bbox [895,538,905,584]), indicating a potential rendering artifact or scrollbar/divider glitch."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Screenshot timing or rendering delay"
+          ]
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 6,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "bug_id": 14732,
+  "ground_truth_bug_ids": [],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "CLI preferences export (-x) appears to be forwarded to running JabRef instance and logs misleading 'Imported entries' message",
+            "steps_to_reproduce": [
+              "Start/keep JabRef GUI running",
+              "In a terminal, run preferences export: `\"$JABREF_BIN\" -x \"$CLI_DIR/prefs-export.xml\"`"
+            ],
+            "expected_behaviors": [
+              "CLI export writes the preferences export file and exits cleanly (or at least reports an export-related message)."
+            ],
+            "actual_behaviors": [
+              "Terminal output indicates: \"arguments passed on to running JabRef instance. Shutting down.\" and includes an \"Imported entries\" log line, which is inconsistent with exporting preferences and suggests the CLI export path may not be executed directly."
+            ]
+          },
+          "is_duplicate": null
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}

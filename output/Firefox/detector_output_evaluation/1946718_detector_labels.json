@@ -1,0 +1,87 @@
+{
+  "bug_id": 1946718,
+  "ground_truth_bug_ids": [
+    1974508,
+    1978281,
+    1979592
+  ],
+  "test_scenarios": [
+    {
+      "scenario_no": 0,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 1,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 2,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 3,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 4,
+      "discovered_bugs": [],
+      "undiscovered_but_revealed_bugs": []
+    },
+    {
+      "scenario_no": 5,
+      "discovered_bugs": [
+        {
+          "bug_report": {
+            "summary": "Passwords Add form: Username field text differs across builds; non-ASCII character “ä” appears dropped in one build",
+            "steps_to_reproduce": [
+              "Open Sidebar → Passwords (about:logins#).",
+              "Click “Add password”.",
+              "In Website address, enter `https://bücher.de`.",
+              "In Username, enter `märta` (includes “ä”)."
+            ],
+            "expected_behaviors": [
+              "Username field should preserve and display the exact entered value, including non-ASCII characters like “ä”."
+            ],
+            "actual_behaviors": [
+              "Before-change build: Username displays as `mrta` (the “ä” character is missing).",
+              "After-change build: Username displays as `märta`."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": false,
+          "is_introduced": null,
+          "hit_ground_truth": null,
+          "false_positive_reasons": [
+            "Expected GUI difference due to intended code change"
+          ]
+        },
+        {
+          "bug_report": {
+            "summary": "Passwords entry details show inconsistent IDN formatting (Unicode title/list vs punycode Website address)",
+            "steps_to_reproduce": [
+              "Open Sidebar → Passwords (about:logins#).",
+              "Add a new password with Website/Origin `https://bücher.de` and save it.",
+              "Open the saved entry details view."
+            ],
+            "expected_behaviors": [
+              "The domain/origin should be displayed consistently across the entry header, list item, and Website address field (either consistently Unicode or consistently punycode, per product decision)."
+            ],
+            "actual_behaviors": [
+              "After change: entry header and left-side list show `bücher.de`, but the Website address field displays `https://xn--bcher-kva.de` (punycode), creating inconsistent/possibly confusing presentation."
+            ]
+          },
+          "is_duplicate": false,
+          "is_true_positive": true,
+          "is_introduced": true,
+          "hit_ground_truth": null,
+          "false_positive_reasons": []
+        }
+      ],
+      "undiscovered_but_revealed_bugs": []
+    }
+  ]
+}
