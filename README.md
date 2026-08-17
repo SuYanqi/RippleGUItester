@@ -166,19 +166,6 @@ output/{Repository}/output/{PR_ID}/
 
 ---
 
-## Known Differences from the Accepted Paper
-
-⚠️ **Note**: The artifact contains a **correction** to the evaluation statistics:
-
-  * **Table 1:** JabRef TP −2, FP +2 -> Total TP −2, Total FP +2
-  * **RQ2:** The number of analyzed false-positive bugs increases by 2.
-
-* **Impact.** This correction affects only the reported statistics and does **not** change the experimental findings or the conclusions of the paper.
-
-* **Camera-ready.** We intend to incorporate this correction into the camera ready version.
-
----
-
 ## Results Reported in the Paper
 
 To reproduce the results reported in **Table 1 (Bug Detection)**, run:
