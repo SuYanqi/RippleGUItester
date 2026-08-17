@@ -2,7 +2,9 @@
 
 ## Hardware
 
-- **Architecture**: x86-64 (AMD64)
+- **Supported architectures:**
+  - x86-64 (Intel/AMD)
+  - ARM64 (Apple Silicon)
 - **CPU**: 8+ cores recommended
 - **RAM**: 32 GB recommended
 - **Disk**: 100 GB free space
