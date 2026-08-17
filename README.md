@@ -63,25 +63,6 @@ To install and run RippleGUItester, follow these steps:
    # Create .openai_token file with your OpenAI API key
    echo "sk-proj-xxxxx..." > .openai_token
    ```
-
----
-
-## Quick Validation
-
-Verify the setup by running evaluation scripts:
-
-```bash
-# Reproduce RQ3 (Bug Distribution - generates Figure 8)
-python -m scripts.evaluation.calculate_recall_on_known_bugs
-```
-
-```bash
-# Reproduce RQ4 (Overhead breakdown - generates Figure 9)
-python -m scripts.evaluation.calculate_overhead_breakdown
-```
-
-Expected output: Figures matching the paper's reported results.
-
 ---
 
 # Part II: Step-by-Step Instructions
